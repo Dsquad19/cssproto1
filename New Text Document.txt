@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: linkedin-finder
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python FinalVersion.py
+    plan: free

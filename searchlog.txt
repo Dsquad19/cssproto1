@@ -1,0 +1,587 @@
+[2025-04-21 09:19:47,904] [INFO] :: 🔁 Logger started — appending to existing searchlog.txt
+[2025-04-21 09:19:47,907] [INFO] :: Use pytorch device_name: cpu
+[2025-04-21 09:19:47,907] [INFO] :: Load pretrained SentenceTransformer: all-mpnet-base-v2
+[2025-04-21 09:19:50,287] [INFO] :: ====== WebDriver manager ======
+[2025-04-21 09:19:51,735] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-04-21 09:19:51,810] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-04-21 09:19:51,893] [INFO] :: Driver [C:\Users\Patel\.wdm\drivers\chromedriver\win64\135.0.7049.95\chromedriver-win32/chromedriver.exe] found in cache
+[2025-04-21 09:19:51,915] [INFO] :: Dash is running on http://127.0.0.1:8050/
+
+[2025-04-21 09:20:05,886] [INFO] :: 📥 Uploaded names_with_university.csv with 17 rows.
+[2025-04-21 09:20:07,151] [INFO] :: 🚀 Starting search with 17 person(s)...
+[2025-04-21 09:20:07,152] [INFO] :: 🔍 Querying SerpAPI for: "Oren Rabinovich" "Rutgers University" site:linkedin.com
+[2025-04-21 09:20:07,153] [INFO] :: 🔍 Querying SerpAPI for: "Ariel Gitman" "Rutgers University" site:linkedin.com
+[2025-04-21 09:20:07,154] [INFO] :: 🔍 Querying SerpAPI for: "Soham Desai" "Rutgers University" site:linkedin.com
+[2025-04-21 09:20:07,157] [INFO] :: 🔍 Querying SerpAPI for: "Andrew Jerome" "Rutgers University" site:linkedin.com
+[2025-04-21 09:20:07,160] [INFO] :: 🔍 Querying SerpAPI for: "Darsh Patel" "Rutgers University" site:linkedin.com
+[2025-04-21 09:20:07,162] [INFO] :: 🔍 Querying SerpAPI for: "Dylan Shah" "Rutgers University" site:linkedin.com
+[2025-04-21 09:20:07,164] [INFO] :: 🔍 Querying SerpAPI for: "Byron Gomez" "Rutgers University" site:linkedin.com
+[2025-04-21 09:20:07,165] [INFO] :: 🔍 Querying SerpAPI for: "Arian Pedram" "Rutgers University" site:linkedin.com
+[2025-04-21 09:20:08,726] [INFO] :: [Similarity] Cosine: 0.70 | Fuzzy: 0.57
+[2025-04-21 09:20:08,735] [INFO] :: [Similarity] Cosine: 0.64 | Fuzzy: 1.00
+[2025-04-21 09:20:08,804] [INFO] :: [Similarity] Cosine: 0.79 | Fuzzy: 1.00
+[2025-04-21 09:20:09,115] [INFO] :: [Similarity] Cosine: 0.67 | Fuzzy: 1.00
+[2025-04-21 09:20:09,182] [INFO] :: [Similarity] Cosine: 0.56 | Fuzzy: 1.00
+[2025-04-21 09:20:09,412] [INFO] :: [Similarity] Cosine: 0.39 | Fuzzy: 1.00
+[2025-04-21 09:20:09,945] [INFO] :: 🔎 Completed: Arian Pedram
+[2025-04-21 09:20:09,945] [INFO] :: 🔍 Querying SerpAPI for: "Karma Tenzin" "Rutgers University" site:linkedin.com
+[2025-04-21 09:20:10,099] [INFO] :: 🔎 Completed: Ariel Gitman
+[2025-04-21 09:20:10,099] [INFO] :: 🔍 Querying SerpAPI for: "Fred Ngo" "University of Toronto" site:linkedin.com
+[2025-04-21 09:20:10,385] [INFO] :: 🔎 Completed: Byron Gomez
+[2025-04-21 09:20:10,385] [INFO] :: 🔍 Querying SerpAPI for: "Devansh  Barot" "University of Pittsburgh" site:linkedin.com
+[2025-04-21 09:20:10,557] [INFO] :: 🔎 Completed: Andrew Jerome
+[2025-04-21 09:20:10,557] [INFO] :: 🔍 Querying SerpAPI for: "Ami  Balli" "Hofstra University" site:linkedin.com
+[2025-04-21 09:20:10,687] [INFO] :: [Similarity] Cosine: 0.57 | Fuzzy: 1.00
+[2025-04-21 09:20:11,345] [INFO] :: 🔎 Completed: Soham Desai
+[2025-04-21 09:20:11,345] [INFO] :: 🔍 Querying SerpAPI for: "Manan Patel" "Rutgers University" site:linkedin.com
+[2025-04-21 09:20:11,431] [INFO] :: 🔎 Completed: Karma Tenzin
+[2025-04-21 09:20:11,431] [INFO] :: 🔍 Querying SerpAPI for: "Ayush Patel" "Rutgers Univesity" site:linkedin.com
+[2025-04-21 09:20:11,552] [INFO] :: [Similarity] Cosine: 0.67 | Fuzzy: 1.00
+[2025-04-21 09:20:12,351] [INFO] :: [Similarity] Cosine: 0.44 | Fuzzy: 1.00
+[2025-04-21 09:20:12,888] [INFO] :: [Similarity] Cosine: 0.59 | Fuzzy: 1.00
+[2025-04-21 09:20:13,760] [INFO] :: 🔎 Completed: Ayush Patel
+[2025-04-21 09:20:13,760] [INFO] :: 🔍 Querying SerpAPI for: "Chinmay Patel" "Rutgers University" site:linkedin.com
+[2025-04-21 09:20:14,569] [INFO] :: 🔎 Completed: Fred Ngo
+[2025-04-21 09:20:14,569] [INFO] :: 🔍 Querying SerpAPI for: "Riya Patel" "Rutgers University" site:linkedin.com
+[2025-04-21 09:20:14,601] [INFO] :: [Similarity] Cosine: 0.60 | Fuzzy: 1.00
+[2025-04-21 09:20:15,472] [INFO] :: [Similarity] Cosine: 0.62 | Fuzzy: 0.45
+[2025-04-21 09:20:15,841] [INFO] :: 🔎 Completed: Dylan Shah
+[2025-04-21 09:20:15,841] [INFO] :: 🔍 Querying SerpAPI for: "Isha Shah" "Rutgers University" site:linkedin.com
+[2025-04-21 09:20:16,144] [INFO] :: 🔎 Completed: Chinmay Patel
+[2025-04-21 09:20:17,013] [INFO] :: [Similarity] Cosine: 0.64 | Fuzzy: 1.00
+[2025-04-21 09:20:17,894] [INFO] :: 🔎 Completed: Devansh  Barot
+[2025-04-21 09:20:18,472] [INFO] :: [Similarity] Cosine: 0.59 | Fuzzy: 1.00
+[2025-04-21 09:20:20,230] [INFO] :: 🔎 Completed: Darsh Patel
+[2025-04-21 09:20:21,163] [INFO] :: 🔎 Completed: Ami  Balli
+[2025-04-21 09:20:23,942] [INFO] :: [Similarity] Cosine: 0.46 | Fuzzy: 1.00
+[2025-04-21 09:20:24,073] [INFO] :: [Similarity] Cosine: 0.45 | Fuzzy: 1.00
+[2025-04-21 09:20:25,581] [INFO] :: 🔎 Completed: Isha Shah
+[2025-04-21 09:20:28,040] [INFO] :: [Similarity] Cosine: 0.58 | Fuzzy: 1.00
+[2025-04-21 09:20:28,732] [INFO] :: 🔎 Completed: Riya Patel
+[2025-04-21 09:20:28,797] [INFO] :: 🔎 Completed: Oren Rabinovich
+[2025-04-21 09:20:34,759] [INFO] :: 🔎 Completed: Manan Patel
+[2025-04-21 09:20:34,760] [INFO] :: ✅ All searches complete.
+[2025-04-21 09:20:34,760] [INFO] :: ⚙️ Running income estimation finalization...
+[2025-04-21 09:20:34,897] [INFO] :: 📊 Finalizing income data before displaying table...
+[2025-04-21 09:20:35,885] [INFO] :: 📊 Finalizing income data before displaying table...
+[2025-04-21 09:20:36,892] [INFO] :: 📊 Finalizing income data before displaying table...
+[2025-04-21 09:20:37,886] [INFO] :: 📊 Finalizing income data before displaying table...
+[2025-04-21 09:20:38,891] [INFO] :: 📊 Finalizing income data before displaying table...
+[2025-04-21 09:20:39,886] [INFO] :: 📊 Finalizing income data before displaying table...
+[2025-04-21 09:20:41,595] [INFO] :: 💰 Arian Pedram income: Unknown
+[2025-04-21 09:20:41,610] [INFO] :: 💰 Arian Pedram income: Unknown
+[2025-04-21 09:20:41,626] [INFO] :: 💰 Arian Pedram income: Unknown
+[2025-04-21 09:20:41,631] [INFO] :: 💰 Arian Pedram income: Unknown
+[2025-04-21 09:20:41,632] [INFO] :: 💰 Arian Pedram income: Unknown
+[2025-04-21 09:20:41,632] [INFO] :: 💰 Arian Pedram income: Unknown
+[2025-04-21 09:20:41,638] [INFO] :: 💰 Arian Pedram income: Unknown
+[2025-04-21 09:20:44,962] [INFO] :: 💰 Ariel Gitman income: Unknown
+[2025-04-21 09:20:44,966] [INFO] :: 💰 Ariel Gitman income: Unknown
+[2025-04-21 09:20:44,973] [INFO] :: 💰 Ariel Gitman income: Unknown
+[2025-04-21 09:20:44,985] [INFO] :: 💰 Ariel Gitman income: Unknown
+[2025-04-21 09:20:44,986] [INFO] :: 💰 Ariel Gitman income: Unknown
+[2025-04-21 09:20:45,004] [INFO] :: 💰 Ariel Gitman income: Unknown
+[2025-04-21 09:20:45,038] [INFO] :: 💰 Ariel Gitman income: Unknown
+[2025-04-21 09:20:52,199] [INFO] :: 💰 Byron Gomez income: Unknown
+[2025-04-21 09:20:52,200] [INFO] :: 💰 Byron Gomez income: Unknown
+[2025-04-21 09:20:52,200] [INFO] :: 💰 Byron Gomez income: Unknown
+[2025-04-21 09:20:52,201] [INFO] :: 💰 Byron Gomez income: Unknown
+[2025-04-21 09:20:52,201] [INFO] :: 💰 Byron Gomez income: Unknown
+[2025-04-21 09:20:52,202] [INFO] :: 💰 Byron Gomez income: Unknown
+[2025-04-21 09:20:52,211] [INFO] :: 💰 Byron Gomez income: Unknown
+[2025-04-21 09:20:54,109] [INFO] :: 💰 Andrew Jerome income: Unknown
+[2025-04-21 09:20:54,109] [INFO] :: 💰 Andrew Jerome income: Unknown
+[2025-04-21 09:20:54,123] [INFO] :: 💰 Andrew Jerome income: Unknown
+[2025-04-21 09:20:54,124] [INFO] :: 💰 Andrew Jerome income: Unknown
+[2025-04-21 09:20:54,125] [INFO] :: 💰 Andrew Jerome income: Unknown
+[2025-04-21 09:20:54,130] [INFO] :: 💰 Andrew Jerome income: Unknown
+[2025-04-21 09:20:54,133] [INFO] :: 💰 Andrew Jerome income: Unknown
+[2025-04-21 09:20:55,591] [INFO] :: 💰 Soham Desai income: Unknown
+[2025-04-21 09:20:55,616] [INFO] :: 💰 Soham Desai income: Unknown
+[2025-04-21 09:20:55,617] [INFO] :: 💰 Soham Desai income: Unknown
+[2025-04-21 09:20:55,626] [INFO] :: 💰 Soham Desai income: Unknown
+[2025-04-21 09:20:55,627] [INFO] :: 💰 Soham Desai income: Unknown
+[2025-04-21 09:20:55,630] [INFO] :: 💰 Soham Desai income: Unknown
+[2025-04-21 09:20:55,640] [INFO] :: 💰 Soham Desai income: Unknown
+[2025-04-21 09:20:57,437] [INFO] :: 💰 Karma Tenzin income: $17
+[2025-04-21 09:20:57,453] [INFO] :: 💰 Karma Tenzin income: $17
+[2025-04-21 09:20:57,455] [INFO] :: 💰 Karma Tenzin income: $17
+[2025-04-21 09:20:57,456] [INFO] :: 💰 Karma Tenzin income: $17
+[2025-04-21 09:20:57,465] [INFO] :: 💰 Karma Tenzin income: $17
+[2025-04-21 09:20:57,466] [INFO] :: 💰 Karma Tenzin income: $17
+[2025-04-21 09:20:57,466] [INFO] :: 💰 Karma Tenzin income: $17
+[2025-04-21 09:20:58,515] [INFO] :: 💰 Ayush Patel income: Unknown
+[2025-04-21 09:20:58,557] [INFO] :: 💰 Ayush Patel income: Unknown
+[2025-04-21 09:20:58,557] [INFO] :: 💰 Ayush Patel income: Unknown
+[2025-04-21 09:20:58,560] [INFO] :: 💰 Ayush Patel income: Unknown
+[2025-04-21 09:20:58,564] [INFO] :: 💰 Ayush Patel income: Unknown
+[2025-04-21 09:20:58,565] [INFO] :: 💰 Ayush Patel income: Unknown
+[2025-04-21 09:20:58,565] [INFO] :: 💰 Ayush Patel income: Unknown
+[2025-04-21 09:20:59,811] [INFO] :: 💰 Fred Ngo income: $93660
+[2025-04-21 09:20:59,830] [INFO] :: 💰 Fred Ngo income: $93660
+[2025-04-21 09:20:59,832] [INFO] :: 💰 Fred Ngo income: $93660
+[2025-04-21 09:20:59,832] [INFO] :: 💰 Fred Ngo income: $93660
+[2025-04-21 09:20:59,833] [INFO] :: 💰 Fred Ngo income: $93660
+[2025-04-21 09:20:59,833] [INFO] :: 💰 Fred Ngo income: $93660
+[2025-04-21 09:20:59,835] [INFO] :: 💰 Fred Ngo income: $93660
+[2025-04-21 09:21:01,666] [INFO] :: 💰 Dylan Shah income: $55,828
+[2025-04-21 09:21:01,667] [INFO] :: 💰 Dylan Shah income: $55,828
+[2025-04-21 09:21:01,683] [INFO] :: 💰 Dylan Shah income: $55,828
+[2025-04-21 09:21:01,729] [INFO] :: 💰 Dylan Shah income: $55,828
+[2025-04-21 09:21:01,729] [INFO] :: 💰 Dylan Shah income: $55,828
+[2025-04-21 09:21:01,736] [INFO] :: 💰 Dylan Shah income: $55,828
+[2025-04-21 09:21:01,742] [INFO] :: 💰 Dylan Shah income: $55,828
+[2025-04-21 09:21:02,272] [INFO] :: 💰 Chinmay Patel income: Unknown
+[2025-04-21 09:21:02,287] [INFO] :: 💰 Chinmay Patel income: Unknown
+[2025-04-21 09:21:02,287] [INFO] :: 💰 Chinmay Patel income: Unknown
+[2025-04-21 09:21:02,301] [INFO] :: 💰 Chinmay Patel income: Unknown
+[2025-04-21 09:21:02,353] [INFO] :: 💰 Chinmay Patel income: Unknown
+[2025-04-21 09:21:02,356] [INFO] :: 💰 Chinmay Patel income: Unknown
+[2025-04-21 09:21:02,357] [INFO] :: 💰 Chinmay Patel income: Unknown
+[2025-04-21 09:21:03,776] [INFO] :: 💰 Devansh  Barot income: Unknown
+[2025-04-21 09:21:03,776] [INFO] :: 💰 Devansh  Barot income: Unknown
+[2025-04-21 09:21:03,776] [INFO] :: 💰 Devansh  Barot income: Unknown
+[2025-04-21 09:21:03,839] [INFO] :: 💰 Devansh  Barot income: Unknown
+[2025-04-21 09:21:03,842] [INFO] :: 💰 Devansh  Barot income: Unknown
+[2025-04-21 09:21:03,846] [INFO] :: 💰 Devansh  Barot income: Unknown
+[2025-04-21 09:21:03,936] [INFO] :: 💰 Devansh  Barot income: Unknown
+[2025-04-21 09:21:06,084] [INFO] :: 💰 Darsh Patel income: Unknown
+[2025-04-21 09:21:06,084] [INFO] :: 💰 Darsh Patel income: Unknown
+[2025-04-21 09:21:06,102] [INFO] :: 💰 Darsh Patel income: Unknown
+[2025-04-21 09:21:06,139] [INFO] :: 💰 Darsh Patel income: Unknown
+[2025-04-21 09:21:06,140] [INFO] :: 💰 Darsh Patel income: Unknown
+[2025-04-21 09:21:06,150] [INFO] :: 💰 Darsh Patel income: Unknown
+[2025-04-21 09:21:06,155] [INFO] :: 💰 Darsh Patel income: Unknown
+[2025-04-21 09:21:14,006] [INFO] :: 💰 Ami  Balli income: Unknown
+[2025-04-21 09:21:14,006] [INFO] :: 💰 Ami  Balli income: Unknown
+[2025-04-21 09:21:14,006] [INFO] :: 💰 Ami  Balli income: Unknown
+[2025-04-21 09:21:14,007] [INFO] :: 💰 Ami  Balli income: Unknown
+[2025-04-21 09:21:14,007] [INFO] :: 💰 Ami  Balli income: Unknown
+[2025-04-21 09:21:14,019] [INFO] :: 💰 Ami  Balli income: Unknown
+[2025-04-21 09:21:14,033] [INFO] :: 💰 Ami  Balli income: Unknown
+[2025-04-21 09:21:23,534] [INFO] :: 💰 Isha Shah income: Unknown
+[2025-04-21 09:21:23,535] [INFO] :: 💰 Isha Shah income: Unknown
+[2025-04-21 09:21:23,535] [INFO] :: 💰 Isha Shah income: Unknown
+[2025-04-21 09:21:23,536] [INFO] :: 💰 Isha Shah income: Unknown
+[2025-04-21 09:21:23,536] [INFO] :: 💰 Isha Shah income: Unknown
+[2025-04-21 09:21:23,536] [INFO] :: 💰 Isha Shah income: Unknown
+[2025-04-21 09:21:23,537] [INFO] :: 💰 Isha Shah income: Unknown
+[2025-04-21 09:21:25,068] [INFO] :: 💰 Riya Patel income: Unknown
+[2025-04-21 09:21:25,068] [INFO] :: 💰 Riya Patel income: Unknown
+[2025-04-21 09:21:25,069] [INFO] :: 💰 Riya Patel income: Unknown
+[2025-04-21 09:21:25,069] [INFO] :: 💰 Riya Patel income: Unknown
+[2025-04-21 09:21:25,109] [INFO] :: 💰 Riya Patel income: Unknown
+[2025-04-21 09:21:25,128] [INFO] :: 💰 Riya Patel income: Unknown
+[2025-04-21 09:21:25,129] [INFO] :: 💰 Riya Patel income: Unknown
+[2025-04-21 09:21:28,334] [INFO] :: 💰 Oren Rabinovich income: Unknown
+[2025-04-21 09:21:28,360] [INFO] :: 💰 Oren Rabinovich income: Unknown
+[2025-04-21 09:21:28,361] [INFO] :: 💰 Oren Rabinovich income: Unknown
+[2025-04-21 09:21:28,361] [INFO] :: 💰 Oren Rabinovich income: Unknown
+[2025-04-21 09:21:28,374] [INFO] :: 💰 Oren Rabinovich income: Unknown
+[2025-04-21 09:21:28,387] [INFO] :: 💰 Oren Rabinovich income: Unknown
+[2025-04-21 09:21:28,409] [INFO] :: 💰 Oren Rabinovich income: Unknown
+[2025-04-21 09:21:30,571] [INFO] :: 💰 Manan Patel income: $54,113
+[2025-04-21 09:21:30,600] [INFO] :: 💰 Manan Patel income: $54,113
+[2025-04-21 09:21:30,605] [INFO] :: 💰 Manan Patel income: $54,113
+[2025-04-21 09:21:30,610] [INFO] :: 💰 Manan Patel income: $54,113
+[2025-04-21 09:21:30,611] [INFO] :: 💰 Manan Patel income: $54,113
+[2025-04-21 09:21:30,624] [INFO] :: 💰 Manan Patel income: $54,113
+[2025-04-21 09:21:30,644] [INFO] :: 💰 Manan Patel income: $54,113
+[2025-04-21 09:21:30,646] [INFO] :: ✅ Income queries added to all results.
+[2025-04-21 09:22:10,627] [INFO] :: 🛑 Search manually stopped.
+[2025-05-03 17:17:02,468] [INFO] :: 🔁 Logger started — appending to existing searchlog.txt
+[2025-05-03 17:17:02,471] [INFO] :: Use pytorch device_name: cpu
+[2025-05-03 17:17:02,472] [INFO] :: Load pretrained SentenceTransformer: all-mpnet-base-v2
+[2025-05-03 17:17:04,046] [INFO] :: ====== WebDriver manager ======
+[2025-05-03 17:17:06,100] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:17:06,172] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:17:06,237] [INFO] :: There is no [win64] chromedriver "135.0.7049.114" for browser google-chrome "135.0.7049" in cache
+[2025-05-03 17:17:06,238] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:17:06,390] [INFO] :: WebDriver version 135.0.7049.114 selected
+[2025-05-03 17:17:06,392] [INFO] :: Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.114/win32/chromedriver-win32.zip
+[2025-05-03 17:17:06,393] [INFO] :: About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.114/win32/chromedriver-win32.zip
+[2025-05-03 17:17:06,490] [INFO] :: Driver downloading response is 200
+[2025-05-03 17:17:06,879] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:17:07,039] [INFO] :: Driver has been saved in cache [C:\Users\Patel\.wdm\drivers\chromedriver\win64\135.0.7049.114]
+[2025-05-03 17:17:07,065] [INFO] :: Dash is running on http://127.0.0.1:8050/
+
+[2025-05-03 17:17:13,521] [INFO] :: 🔁 Logger started — appending to existing searchlog.txt
+[2025-05-03 17:17:13,524] [INFO] :: Use pytorch device_name: cpu
+[2025-05-03 17:17:13,525] [INFO] :: Load pretrained SentenceTransformer: all-mpnet-base-v2
+[2025-05-03 17:17:14,640] [INFO] :: ====== WebDriver manager ======
+[2025-05-03 17:17:15,816] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:17:15,885] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:17:15,932] [INFO] :: Driver [C:\Users\Patel\.wdm\drivers\chromedriver\win64\135.0.7049.114\chromedriver-win32/chromedriver.exe] found in cache
+[2025-05-03 17:20:55,319] [INFO] :: 🔁 Logger started — appending to existing searchlog.txt
+[2025-05-03 17:20:55,322] [INFO] :: Use pytorch device_name: cpu
+[2025-05-03 17:20:55,322] [INFO] :: Load pretrained SentenceTransformer: all-mpnet-base-v2
+[2025-05-03 17:20:56,762] [INFO] :: ====== WebDriver manager ======
+[2025-05-03 17:20:58,370] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:20:58,435] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:20:58,487] [INFO] :: Driver [C:\Users\Patel\.wdm\drivers\chromedriver\win64\135.0.7049.114\chromedriver-win32/chromedriver.exe] found in cache
+[2025-05-03 17:20:58,509] [INFO] :: Dash is running on http://127.0.0.1:8050/
+
+[2025-05-03 17:21:03,828] [INFO] :: 🔁 Logger started — appending to existing searchlog.txt
+[2025-05-03 17:21:03,831] [INFO] :: Use pytorch device_name: cpu
+[2025-05-03 17:21:03,832] [INFO] :: Load pretrained SentenceTransformer: all-mpnet-base-v2
+[2025-05-03 17:21:04,927] [INFO] :: ====== WebDriver manager ======
+[2025-05-03 17:21:06,034] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:21:06,085] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:21:06,149] [INFO] :: Driver [C:\Users\Patel\.wdm\drivers\chromedriver\win64\135.0.7049.114\chromedriver-win32/chromedriver.exe] found in cache
+[2025-05-03 17:23:59,529] [INFO] :: 🔁 Logger started — appending to existing searchlog.txt
+[2025-05-03 17:23:59,532] [INFO] :: Use pytorch device_name: cpu
+[2025-05-03 17:23:59,533] [INFO] :: Load pretrained SentenceTransformer: all-mpnet-base-v2
+[2025-05-03 17:24:00,794] [INFO] :: ====== WebDriver manager ======
+[2025-05-03 17:24:02,290] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:24:02,344] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:24:02,395] [INFO] :: Driver [C:\Users\Patel\.wdm\drivers\chromedriver\win64\135.0.7049.114\chromedriver-win32/chromedriver.exe] found in cache
+[2025-05-03 17:24:02,416] [INFO] :: Dash is running on http://127.0.0.1:8050/
+
+[2025-05-03 17:24:07,295] [INFO] :: 🔁 Logger started — appending to existing searchlog.txt
+[2025-05-03 17:24:07,298] [INFO] :: Use pytorch device_name: cpu
+[2025-05-03 17:24:07,299] [INFO] :: Load pretrained SentenceTransformer: all-mpnet-base-v2
+[2025-05-03 17:24:08,575] [INFO] :: ====== WebDriver manager ======
+[2025-05-03 17:24:09,626] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:24:09,664] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:24:09,701] [INFO] :: Driver [C:\Users\Patel\.wdm\drivers\chromedriver\win64\135.0.7049.114\chromedriver-win32/chromedriver.exe] found in cache
+[2025-05-03 17:28:19,182] [INFO] :: 🔁 Logger started — appending to existing searchlog.txt
+[2025-05-03 17:28:19,192] [INFO] :: Use pytorch device_name: cpu
+[2025-05-03 17:28:19,193] [INFO] :: Load pretrained SentenceTransformer: all-mpnet-base-v2
+[2025-05-03 17:28:20,664] [INFO] :: ====== WebDriver manager ======
+[2025-05-03 17:28:22,565] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:28:22,612] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:28:22,660] [INFO] :: Driver [C:\Users\Patel\.wdm\drivers\chromedriver\win64\135.0.7049.114\chromedriver-win32/chromedriver.exe] found in cache
+[2025-05-03 17:29:06,945] [INFO] :: 🔁 Logger started — appending to existing searchlog.txt
+[2025-05-03 17:29:06,947] [INFO] :: Use pytorch device_name: cpu
+[2025-05-03 17:29:06,948] [INFO] :: Load pretrained SentenceTransformer: all-mpnet-base-v2
+[2025-05-03 17:29:08,454] [INFO] :: ====== WebDriver manager ======
+[2025-05-03 17:29:09,541] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:29:09,599] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:29:09,662] [INFO] :: Driver [C:\Users\Patel\.wdm\drivers\chromedriver\win64\135.0.7049.114\chromedriver-win32/chromedriver.exe] found in cache
+[2025-05-03 17:29:09,682] [INFO] :: Dash is running on http://127.0.0.1:8050/
+
+[2025-05-03 17:29:14,496] [INFO] :: 🔁 Logger started — appending to existing searchlog.txt
+[2025-05-03 17:29:14,499] [INFO] :: Use pytorch device_name: cpu
+[2025-05-03 17:29:14,499] [INFO] :: Load pretrained SentenceTransformer: all-mpnet-base-v2
+[2025-05-03 17:29:16,031] [INFO] :: ====== WebDriver manager ======
+[2025-05-03 17:29:17,249] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:29:17,303] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:29:17,357] [INFO] :: Driver [C:\Users\Patel\.wdm\drivers\chromedriver\win64\135.0.7049.114\chromedriver-win32/chromedriver.exe] found in cache
+[2025-05-03 17:35:28,321] [INFO] :: 🔁 Logger started — appending to existing searchlog.txt
+[2025-05-03 17:35:28,328] [INFO] :: Use pytorch device_name: cpu
+[2025-05-03 17:35:28,328] [INFO] :: Load pretrained SentenceTransformer: all-mpnet-base-v2
+[2025-05-03 17:35:29,748] [INFO] :: ====== WebDriver manager ======
+[2025-05-03 17:35:31,512] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:35:31,552] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:35:31,598] [INFO] :: Driver [C:\Users\Patel\.wdm\drivers\chromedriver\win64\135.0.7049.114\chromedriver-win32/chromedriver.exe] found in cache
+[2025-05-03 17:35:31,620] [INFO] :: Dash is running on http://127.0.0.1:8050/
+
+[2025-05-03 17:35:37,676] [INFO] :: 🔁 Logger started — appending to existing searchlog.txt
+[2025-05-03 17:35:37,683] [INFO] :: Use pytorch device_name: cpu
+[2025-05-03 17:35:37,683] [INFO] :: Load pretrained SentenceTransformer: all-mpnet-base-v2
+[2025-05-03 17:35:39,263] [INFO] :: ====== WebDriver manager ======
+[2025-05-03 17:35:40,408] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:35:40,459] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:35:40,507] [INFO] :: Driver [C:\Users\Patel\.wdm\drivers\chromedriver\win64\135.0.7049.114\chromedriver-win32/chromedriver.exe] found in cache
+[2025-05-03 17:37:56,304] [INFO] :: 🔁 Logger started — appending to existing searchlog.txt
+[2025-05-03 17:37:56,307] [INFO] :: Use pytorch device_name: cpu
+[2025-05-03 17:37:56,308] [INFO] :: Load pretrained SentenceTransformer: all-mpnet-base-v2
+[2025-05-03 17:37:57,417] [INFO] :: ====== WebDriver manager ======
+[2025-05-03 17:37:58,737] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:37:58,775] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:37:58,825] [INFO] :: Driver [C:\Users\Patel\.wdm\drivers\chromedriver\win64\135.0.7049.114\chromedriver-win32/chromedriver.exe] found in cache
+[2025-05-03 17:37:58,850] [INFO] :: Dash is running on http://127.0.0.1:8050/
+
+[2025-05-03 17:38:03,299] [INFO] :: 🔁 Logger started — appending to existing searchlog.txt
+[2025-05-03 17:38:03,301] [INFO] :: Use pytorch device_name: cpu
+[2025-05-03 17:38:03,301] [INFO] :: Load pretrained SentenceTransformer: all-mpnet-base-v2
+[2025-05-03 17:38:04,450] [INFO] :: ====== WebDriver manager ======
+[2025-05-03 17:38:05,483] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:38:05,523] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:38:05,565] [INFO] :: Driver [C:\Users\Patel\.wdm\drivers\chromedriver\win64\135.0.7049.114\chromedriver-win32/chromedriver.exe] found in cache
+[2025-05-03 17:41:17,118] [INFO] :: 🔁 Logger started — appending to existing searchlog.txt
+[2025-05-03 17:41:17,122] [INFO] :: Use pytorch device_name: cpu
+[2025-05-03 17:41:17,123] [INFO] :: Load pretrained SentenceTransformer: all-mpnet-base-v2
+[2025-05-03 17:41:18,465] [INFO] :: ====== WebDriver manager ======
+[2025-05-03 17:41:20,609] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:41:20,717] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:41:20,779] [INFO] :: Driver [C:\Users\Patel\.wdm\drivers\chromedriver\win64\135.0.7049.114\chromedriver-win32/chromedriver.exe] found in cache
+[2025-05-03 17:52:48,689] [INFO] :: 🔁 Logger started — appending to existing searchlog.txt
+[2025-05-03 17:52:48,691] [INFO] :: Use pytorch device_name: cpu
+[2025-05-03 17:52:48,692] [INFO] :: Load pretrained SentenceTransformer: all-mpnet-base-v2
+[2025-05-03 17:52:50,184] [INFO] :: ====== WebDriver manager ======
+[2025-05-03 17:52:51,808] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:52:51,868] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:52:51,916] [INFO] :: Driver [C:\Users\Patel\.wdm\drivers\chromedriver\win64\135.0.7049.114\chromedriver-win32/chromedriver.exe] found in cache
+[2025-05-03 17:52:51,945] [INFO] :: Dash is running on http://127.0.0.1:8050/
+
+[2025-05-03 17:52:57,348] [INFO] :: 🔁 Logger started — appending to existing searchlog.txt
+[2025-05-03 17:52:57,351] [INFO] :: Use pytorch device_name: cpu
+[2025-05-03 17:52:57,351] [INFO] :: Load pretrained SentenceTransformer: all-mpnet-base-v2
+[2025-05-03 17:52:58,041] [INFO] :: ====== WebDriver manager ======
+[2025-05-03 17:52:59,124] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:52:59,195] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 17:52:59,241] [INFO] :: Driver [C:\Users\Patel\.wdm\drivers\chromedriver\win64\135.0.7049.114\chromedriver-win32/chromedriver.exe] found in cache
+[2025-05-03 17:54:33,534] [INFO] :: 📥 Uploaded names_with_university.csv with 17 rows.
+[2025-05-03 17:54:48,616] [INFO] :: 🚀 Starting search for 17 person(s)
+[2025-05-03 17:54:48,617] [ERROR] :: ❌ SERPAPI_KEY env not set — abort SerpAPI search.
+[2025-05-03 17:54:48,617] [ERROR] :: ❌ SERPAPI_KEY env not set — abort SerpAPI search.
+[2025-05-03 17:54:48,618] [ERROR] :: ❌ SERPAPI_KEY env not set — abort SerpAPI search.
+[2025-05-03 17:54:48,618] [ERROR] :: ❌ SERPAPI_KEY env not set — abort SerpAPI search.
+[2025-05-03 17:54:48,620] [ERROR] :: ❌ SERPAPI_KEY env not set — abort SerpAPI search.
+[2025-05-03 17:54:48,621] [ERROR] :: ❌ SERPAPI_KEY env not set — abort SerpAPI search.
+[2025-05-03 17:54:48,622] [ERROR] :: ❌ SERPAPI_KEY env not set — abort SerpAPI search.
+[2025-05-03 17:54:48,623] [ERROR] :: ❌ SERPAPI_KEY env not set — abort SerpAPI search.
+[2025-05-03 17:55:01,562] [ERROR] :: ❌ SERPAPI_KEY env not set — abort SerpAPI search.
+[2025-05-03 17:55:02,224] [ERROR] :: ❌ SERPAPI_KEY env not set — abort SerpAPI search.
+[2025-05-03 17:55:02,430] [ERROR] :: ❌ SERPAPI_KEY env not set — abort SerpAPI search.
+[2025-05-03 17:55:02,494] [ERROR] :: ❌ SERPAPI_KEY env not set — abort SerpAPI search.
+[2025-05-03 17:55:02,689] [ERROR] :: ❌ SERPAPI_KEY env not set — abort SerpAPI search.
+[2025-05-03 17:55:02,752] [ERROR] :: ❌ SERPAPI_KEY env not set — abort SerpAPI search.
+[2025-05-03 17:55:02,800] [ERROR] :: ❌ SERPAPI_KEY env not set — abort SerpAPI search.
+[2025-05-03 17:55:02,801] [ERROR] :: ❌ SERPAPI_KEY env not set — abort SerpAPI search.
+[2025-05-03 17:55:12,406] [INFO] :: [Similarity] Cosine: 0.66 | Fuzzy: 1.00
+[2025-05-03 17:55:12,416] [INFO] :: [Similarity] Cosine: 0.67 | Fuzzy: 1.00
+[2025-05-03 17:55:12,467] [INFO] :: [Similarity] Cosine: 0.49 | Fuzzy: 1.00
+[2025-05-03 17:55:12,619] [INFO] :: [Similarity] Cosine: 0.64 | Fuzzy: 1.00
+[2025-05-03 17:55:12,644] [INFO] :: [Similarity] Cosine: 0.67 | Fuzzy: 1.00
+[2025-05-03 17:55:13,048] [ERROR] :: ❌ SERPAPI_KEY env not set — abort SerpAPI search.
+[2025-05-03 17:55:19,708] [INFO] :: [Similarity] Cosine: 0.59 | Fuzzy: 0.70
+[2025-05-03 17:55:19,743] [INFO] :: [Similarity] Cosine: 0.43 | Fuzzy: 1.00
+[2025-05-03 17:55:19,783] [INFO] :: [Similarity] Cosine: 0.61 | Fuzzy: 0.70
+[2025-05-03 17:55:19,818] [INFO] :: [Similarity] Cosine: 0.59 | Fuzzy: 1.00
+[2025-05-03 17:55:19,833] [INFO] :: [Similarity] Cosine: 0.76 | Fuzzy: 1.00
+[2025-05-03 17:55:21,303] [INFO] :: [Similarity] Cosine: 0.62 | Fuzzy: 1.00
+[2025-05-03 17:55:21,671] [INFO] :: [Similarity] Cosine: 0.47 | Fuzzy: 1.00
+[2025-05-03 17:55:21,855] [INFO] :: [Similarity] Cosine: 0.42 | Fuzzy: 1.00
+[2025-05-03 17:55:21,888] [INFO] :: [Similarity] Cosine: 0.37 | Fuzzy: 1.00
+[2025-05-03 17:55:21,912] [INFO] :: [Similarity] Cosine: 0.70 | Fuzzy: 1.00
+[2025-05-03 17:55:21,919] [INFO] :: [Similarity] Cosine: 0.55 | Fuzzy: 1.00
+[2025-05-03 17:55:23,453] [INFO] :: [Similarity] Cosine: 0.58 | Fuzzy: 0.36
+[2025-05-03 17:55:23,676] [INFO] :: [Similarity] Cosine: 0.70 | Fuzzy: 1.00
+[2025-05-03 17:55:23,698] [INFO] :: [Similarity] Cosine: 0.59 | Fuzzy: 0.70
+[2025-05-03 17:55:23,784] [INFO] :: [Similarity] Cosine: 0.76 | Fuzzy: 1.00
+[2025-05-03 17:55:23,790] [INFO] :: [Similarity] Cosine: 0.65 | Fuzzy: 1.00
+[2025-05-03 17:55:24,173] [INFO] :: [Similarity] Cosine: 0.71 | Fuzzy: 1.00
+[2025-05-03 17:55:25,027] [INFO] :: [Similarity] Cosine: 0.20 | Fuzzy: 0.40
+[2025-05-03 17:55:25,330] [INFO] :: [Similarity] Cosine: 0.66 | Fuzzy: 1.00
+[2025-05-03 17:55:25,369] [INFO] :: [Similarity] Cosine: 0.63 | Fuzzy: 0.50
+[2025-05-03 17:55:25,417] [INFO] :: [Similarity] Cosine: 0.59 | Fuzzy: 1.00
+[2025-05-03 17:55:25,437] [INFO] :: [Similarity] Cosine: 0.66 | Fuzzy: 1.00
+[2025-05-03 17:55:26,269] [INFO] :: [Similarity] Cosine: 0.66 | Fuzzy: 1.00
+[2025-05-03 17:55:27,411] [INFO] :: [Similarity] Cosine: 0.56 | Fuzzy: 0.62
+[2025-05-03 17:55:27,478] [INFO] :: [Similarity] Cosine: 0.73 | Fuzzy: 1.00
+[2025-05-03 17:55:27,699] [INFO] :: [Similarity] Cosine: 0.61 | Fuzzy: 1.00
+[2025-05-03 17:55:27,781] [INFO] :: [Similarity] Cosine: 0.57 | Fuzzy: 0.56
+[2025-05-03 17:55:28,497] [INFO] :: [Similarity] Cosine: 0.63 | Fuzzy: 0.41
+[2025-05-03 17:55:29,266] [INFO] :: [Similarity] Cosine: 0.62 | Fuzzy: 0.45
+[2025-05-03 17:55:29,290] [INFO] :: [Similarity] Cosine: 0.64 | Fuzzy: 1.00
+[2025-05-03 17:55:29,535] [INFO] :: [Similarity] Cosine: 0.65 | Fuzzy: 1.00
+[2025-05-03 17:55:29,614] [INFO] :: [Similarity] Cosine: 0.34 | Fuzzy: 0.41
+[2025-05-03 17:55:30,776] [INFO] :: [Similarity] Cosine: 0.64 | Fuzzy: 1.00
+[2025-05-03 17:55:30,924] [INFO] :: [Similarity] Cosine: 0.42 | Fuzzy: 0.34
+[2025-05-03 17:55:31,219] [INFO] :: [Similarity] Cosine: 0.65 | Fuzzy: 1.00
+[2025-05-03 17:55:31,227] [INFO] :: [Similarity] Cosine: 0.73 | Fuzzy: 1.00
+[2025-05-03 17:55:31,453] [INFO] :: [Similarity] Cosine: 0.71 | Fuzzy: 1.00
+[2025-05-03 17:55:32,640] [INFO] :: [Similarity] Cosine: 0.63 | Fuzzy: 1.00
+[2025-05-03 17:55:32,740] [INFO] :: [Similarity] Cosine: 0.64 | Fuzzy: 1.00
+[2025-05-03 17:55:32,784] [INFO] :: [Similarity] Cosine: 0.71 | Fuzzy: 1.00
+[2025-05-03 17:55:33,274] [INFO] :: [Similarity] Cosine: 0.67 | Fuzzy: 1.00
+[2025-05-03 17:55:34,078] [INFO] :: [Similarity] Cosine: 0.54 | Fuzzy: 1.00
+[2025-05-03 17:55:34,122] [INFO] :: [Similarity] Cosine: 0.68 | Fuzzy: 0.62
+[2025-05-03 17:55:34,525] [INFO] :: [Similarity] Cosine: 0.47 | Fuzzy: 1.00
+[2025-05-03 17:55:35,256] [INFO] :: [Similarity] Cosine: 0.79 | Fuzzy: 1.00
+[2025-05-03 17:55:35,781] [INFO] :: [Similarity] Cosine: 0.61 | Fuzzy: 1.00
+[2025-05-03 17:55:36,431] [INFO] :: [Similarity] Cosine: 0.68 | Fuzzy: 1.00
+[2025-05-03 17:55:36,973] [INFO] :: [Similarity] Cosine: 0.19 | Fuzzy: 0.21
+[2025-05-03 17:55:39,307] [INFO] :: ✅ All tasks finished
+[2025-05-03 17:55:40,074] [INFO] :: 📊 Finalizing income data before displaying table...
+[2025-05-03 17:55:40,077] [INFO] :: 📊 Income estimates added for 17 results
+[2025-05-03 18:01:01,341] [INFO] :: 🔁 Logger started — appending to existing searchlog.txt
+[2025-05-03 18:01:01,344] [INFO] :: Use pytorch device_name: cpu
+[2025-05-03 18:01:01,344] [INFO] :: Load pretrained SentenceTransformer: all-mpnet-base-v2
+[2025-05-03 18:01:02,763] [INFO] :: ====== WebDriver manager ======
+[2025-05-03 18:01:04,696] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 18:01:04,754] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 18:01:04,820] [INFO] :: Driver [C:\Users\Patel\.wdm\drivers\chromedriver\win64\135.0.7049.114\chromedriver-win32/chromedriver.exe] found in cache
+[2025-05-03 18:01:04,848] [INFO] :: Dash is running on http://127.0.0.1:8050/
+
+[2025-05-03 18:01:09,824] [INFO] :: 🔁 Logger started — appending to existing searchlog.txt
+[2025-05-03 18:01:09,827] [INFO] :: Use pytorch device_name: cpu
+[2025-05-03 18:01:09,827] [INFO] :: Load pretrained SentenceTransformer: all-mpnet-base-v2
+[2025-05-03 18:01:10,970] [INFO] :: ====== WebDriver manager ======
+[2025-05-03 18:01:11,983] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 18:01:12,036] [INFO] :: Get LATEST chromedriver version for google-chrome
+[2025-05-03 18:01:12,080] [INFO] :: Driver [C:\Users\Patel\.wdm\drivers\chromedriver\win64\135.0.7049.114\chromedriver-win32/chromedriver.exe] found in cache
+[2025-05-03 18:01:35,030] [INFO] :: 📥 Uploaded names_with_university.csv with 17 rows.
+[2025-05-03 18:01:51,537] [INFO] :: 🚀 Starting search for 17 person(s)
+[2025-05-03 18:01:51,538] [INFO] :: 🔍 SerpAPI query: "Oren Rabinovich" "Rutgers University" site:linkedin.com
+[2025-05-03 18:01:51,540] [INFO] :: 🔍 SerpAPI query: "Ariel Gitman" "Rutgers University" site:linkedin.com
+[2025-05-03 18:01:51,541] [INFO] :: 🔍 SerpAPI query: "Soham Desai" "Rutgers University" site:linkedin.com
+[2025-05-03 18:01:51,543] [INFO] :: 🔍 SerpAPI query: "Andrew Jerome" "Rutgers University" site:linkedin.com
+[2025-05-03 18:01:51,545] [INFO] :: 🔍 SerpAPI query: "Darsh Patel" "Rutgers University" site:linkedin.com
+[2025-05-03 18:01:51,547] [INFO] :: 🔍 SerpAPI query: "Dylan Shah" "Rutgers University" site:linkedin.com
+[2025-05-03 18:01:51,548] [INFO] :: 🔍 SerpAPI query: "Byron Gomez" "Rutgers University" site:linkedin.com
+[2025-05-03 18:01:51,550] [INFO] :: 🔍 SerpAPI query: "Arian Pedram" "Rutgers University" site:linkedin.com
+[2025-05-03 18:01:53,433] [INFO] :: [Similarity] Cosine: 0.70 | Fuzzy: 0.57
+[2025-05-03 18:01:53,438] [INFO] :: [Similarity] Cosine: 0.64 | Fuzzy: 1.00
+[2025-05-03 18:01:53,451] [INFO] :: [Similarity] Cosine: 0.56 | Fuzzy: 1.00
+[2025-05-03 18:01:54,240] [INFO] :: [Similarity] Cosine: 0.68 | Fuzzy: 1.00
+[2025-05-03 18:01:57,369] [INFO] :: [Similarity] Cosine: 0.79 | Fuzzy: 1.00
+[2025-05-03 18:01:57,734] [INFO] :: [Similarity] Cosine: 0.62 | Fuzzy: 0.38
+[2025-05-03 18:01:57,871] [INFO] :: [Similarity] Cosine: 0.59 | Fuzzy: 1.00
+[2025-05-03 18:01:57,873] [INFO] :: [Similarity] Cosine: 0.48 | Fuzzy: 0.38
+[2025-05-03 18:01:57,908] [INFO] :: [Similarity] Cosine: 0.48 | Fuzzy: 1.00
+[2025-05-03 18:01:58,907] [INFO] :: [Similarity] Cosine: 0.55 | Fuzzy: 0.62
+[2025-05-03 18:01:59,206] [INFO] :: [Similarity] Cosine: 0.60 | Fuzzy: 1.00
+[2025-05-03 18:01:59,288] [INFO] :: [Similarity] Cosine: 0.69 | Fuzzy: 0.59
+[2025-05-03 18:01:59,306] [INFO] :: [Similarity] Cosine: 0.57 | Fuzzy: 1.00
+[2025-05-03 18:01:59,529] [INFO] :: [Similarity] Cosine: 0.63 | Fuzzy: 0.63
+[2025-05-03 18:02:00,116] [INFO] :: [Similarity] Cosine: 0.55 | Fuzzy: 1.00
+[2025-05-03 18:02:00,297] [INFO] :: [Similarity] Cosine: 0.39 | Fuzzy: 1.00
+[2025-05-03 18:02:00,622] [INFO] :: [Similarity] Cosine: 0.72 | Fuzzy: 1.00
+[2025-05-03 18:02:00,811] [INFO] :: [Similarity] Cosine: 0.69 | Fuzzy: 1.00
+[2025-05-03 18:02:01,045] [INFO] :: [Similarity] Cosine: 0.63 | Fuzzy: 0.63
+[2025-05-03 18:02:01,460] [INFO] :: [Similarity] Cosine: 0.74 | Fuzzy: 1.00
+[2025-05-03 18:02:01,587] [INFO] :: [Similarity] Cosine: 0.67 | Fuzzy: 1.00
+[2025-05-03 18:02:01,867] [INFO] :: [Similarity] Cosine: 0.69 | Fuzzy: 1.00
+[2025-05-03 18:02:02,309] [INFO] :: [Similarity] Cosine: 0.57 | Fuzzy: 1.00
+[2025-05-03 18:02:02,354] [INFO] :: [Similarity] Cosine: 0.61 | Fuzzy: 0.58
+[2025-05-03 18:02:02,375] [INFO] :: [Similarity] Cosine: 0.62 | Fuzzy: 1.00
+[2025-05-03 18:02:02,654] [INFO] :: [Similarity] Cosine: 0.53 | Fuzzy: 1.00
+[2025-05-03 18:02:02,750] [INFO] :: [Similarity] Cosine: 0.23 | Fuzzy: 0.23
+[2025-05-03 18:02:03,502] [INFO] :: [Similarity] Cosine: 0.40 | Fuzzy: 0.38
+[2025-05-03 18:02:03,510] [INFO] :: [Similarity] Cosine: 0.31 | Fuzzy: 0.22
+[2025-05-03 18:02:03,761] [INFO] :: [Similarity] Cosine: 0.57 | Fuzzy: 1.00
+[2025-05-03 18:02:03,983] [INFO] :: [Similarity] Cosine: 0.60 | Fuzzy: 1.00
+[2025-05-03 18:02:04,001] [INFO] :: [Similarity] Cosine: 0.55 | Fuzzy: 0.65
+[2025-05-03 18:02:04,051] [INFO] :: [Similarity] Cosine: 0.15 | Fuzzy: 0.19
+[2025-05-03 18:02:04,082] [INFO] :: [Similarity] Cosine: 0.25 | Fuzzy: 0.27
+[2025-05-03 18:02:04,084] [INFO] :: 🏆 Best match Ariel Gitman: Ariel Gitman - Solutions Generalist - Petco @ 1.00
+[2025-05-03 18:02:04,086] [INFO] :: 🔍 SerpAPI query: "Karma Tenzin" "Rutgers University" site:linkedin.com
+[2025-05-03 18:02:04,224] [INFO] :: [Similarity] Cosine: 0.11 | Fuzzy: 0.21
+[2025-05-03 18:02:04,225] [INFO] :: 🏆 Best match Soham Desai: Soham Desai - Educator - 4h Youth Development @ 1.00
+[2025-05-03 18:02:04,228] [INFO] :: 🔍 SerpAPI query: "Fred Ngo" "University of Toronto" site:linkedin.com
+[2025-05-03 18:02:04,286] [INFO] :: [Similarity] Cosine: 0.67 | Fuzzy: 1.00
+[2025-05-03 18:02:04,422] [INFO] :: [Similarity] Cosine: 0.62 | Fuzzy: 0.45
+[2025-05-03 18:02:04,778] [INFO] :: [Similarity] Cosine: 0.46 | Fuzzy: 0.29
+[2025-05-03 18:02:05,046] [INFO] :: [Similarity] Cosine: 0.33 | Fuzzy: 1.00
+[2025-05-03 18:02:05,399] [INFO] :: [Similarity] Cosine: 0.63 | Fuzzy: 1.00
+[2025-05-03 18:02:05,491] [INFO] :: [Similarity] Cosine: 0.72 | Fuzzy: 0.77
+[2025-05-03 18:02:05,700] [INFO] :: [Similarity] Cosine: 0.71 | Fuzzy: 1.00
+[2025-05-03 18:02:06,139] [INFO] :: [Similarity] Cosine: 0.67 | Fuzzy: 1.00
+[2025-05-03 18:02:06,461] [INFO] :: [Similarity] Cosine: 0.51 | Fuzzy: 0.62
+[2025-05-03 18:02:06,544] [INFO] :: [Similarity] Cosine: 0.72 | Fuzzy: 1.00
+[2025-05-03 18:02:06,892] [INFO] :: [Similarity] Cosine: 0.62 | Fuzzy: 0.70
+[2025-05-03 18:02:06,947] [INFO] :: [Similarity] Cosine: 0.57 | Fuzzy: 1.00
+[2025-05-03 18:02:07,105] [INFO] :: [Similarity] Cosine: 0.83 | Fuzzy: 1.00
+[2025-05-03 18:02:07,402] [INFO] :: [Similarity] Cosine: 0.56 | Fuzzy: 1.00
+[2025-05-03 18:02:07,577] [INFO] :: [Similarity] Cosine: 0.32 | Fuzzy: 0.22
+[2025-05-03 18:02:07,613] [INFO] :: 🏆 Best match Fred Ngo: Fred Ngo - CodePath @ 1.00
+[2025-05-03 18:02:07,614] [INFO] :: 🔍 SerpAPI query: "Devansh  Barot" "University of Pittsburgh" site:linkedin.com
+[2025-05-03 18:02:08,204] [INFO] :: [Similarity] Cosine: 0.44 | Fuzzy: 1.00
+[2025-05-03 18:02:08,379] [INFO] :: [Similarity] Cosine: 0.56 | Fuzzy: 0.29
+[2025-05-03 18:02:08,559] [INFO] :: [Similarity] Cosine: 0.27 | Fuzzy: 0.17
+[2025-05-03 18:02:08,561] [INFO] :: 🏆 Best match Dylan Shah: Dylan Shah - Executive Vice President - CSUS Chapter @ 1.00
+[2025-05-03 18:02:08,565] [INFO] :: 🔍 SerpAPI query: "Ami  Balli" "Hofstra University" site:linkedin.com
+[2025-05-03 18:02:08,884] [INFO] :: [Similarity] Cosine: 0.63 | Fuzzy: 0.58
+[2025-05-03 18:02:09,152] [INFO] :: [Similarity] Cosine: 0.58 | Fuzzy: 1.00
+[2025-05-03 18:02:09,164] [INFO] :: 🏆 Best match Byron Gomez: Byron Gomez Jr - Software Engineer - Jasfel Analytics LLC. @ 1.00
+[2025-05-03 18:02:09,166] [INFO] :: 🔍 SerpAPI query: "Manan Patel" "Rutgers University" site:linkedin.com
+[2025-05-03 18:02:09,287] [INFO] :: [Similarity] Cosine: 0.61 | Fuzzy: 0.64
+[2025-05-03 18:02:09,300] [INFO] :: [Similarity] Cosine: 0.64 | Fuzzy: 0.65
+[2025-05-03 18:02:09,437] [INFO] :: [Similarity] Cosine: 0.27 | Fuzzy: 0.22
+[2025-05-03 18:02:09,438] [INFO] :: 🏆 Best match Andrew Jerome: Andrew Jerome - @ 1.00
+[2025-05-03 18:02:09,439] [INFO] :: 🔍 SerpAPI query: "Ayush Patel" "Rutgers Univesity" site:linkedin.com
+[2025-05-03 18:02:09,883] [INFO] :: [Similarity] Cosine: 0.56 | Fuzzy: 1.00
+[2025-05-03 18:02:10,097] [INFO] :: [Similarity] Cosine: 0.69 | Fuzzy: 1.00
+[2025-05-03 18:02:10,131] [INFO] :: [Similarity] Cosine: 0.40 | Fuzzy: 1.00
+[2025-05-03 18:02:10,145] [INFO] :: [Similarity] Cosine: 0.57 | Fuzzy: 0.60
+[2025-05-03 18:02:10,277] [WARNING] :: No SerpAPI match for Ami  Balli
+[2025-05-03 18:02:10,329] [INFO] :: 🏆 Best match Darsh Patel: Darsh Patel - Rutgers University @ 1.00
+[2025-05-03 18:02:10,330] [INFO] :: 🔍 SerpAPI query: "Chinmay Patel" "Rutgers University" site:linkedin.com
+[2025-05-03 18:02:10,473] [WARNING] :: No SerpAPI match for Devansh  Barot
+[2025-05-03 18:02:11,017] [INFO] :: [Similarity] Cosine: 0.48 | Fuzzy: 1.00
+[2025-05-03 18:02:11,072] [INFO] :: [Similarity] Cosine: 0.33 | Fuzzy: 0.35
+[2025-05-03 18:02:11,824] [INFO] :: [Similarity] Cosine: 0.34 | Fuzzy: 0.42
+[2025-05-03 18:02:11,889] [INFO] :: [Similarity] Cosine: 0.58 | Fuzzy: 1.00
+[2025-05-03 18:02:13,036] [INFO] :: [Similarity] Cosine: 0.15 | Fuzzy: 0.16
+[2025-05-03 18:02:13,113] [INFO] :: [Similarity] Cosine: 0.59 | Fuzzy: 1.00
+[2025-05-03 18:02:13,619] [INFO] :: [Similarity] Cosine: 0.22 | Fuzzy: 0.39
+[2025-05-03 18:02:13,620] [INFO] :: 🏆 Best match Arian Pedram: Arian Pedram - Treasurer - ColorStack @ 1.00
+[2025-05-03 18:02:13,621] [INFO] :: 🔍 SerpAPI query: "Riya Patel" "Rutgers University" site:linkedin.com
+[2025-05-03 18:02:13,696] [INFO] :: [Similarity] Cosine: 0.60 | Fuzzy: 1.00
+[2025-05-03 18:02:13,844] [INFO] :: [Similarity] Cosine: 0.32 | Fuzzy: 0.42
+[2025-05-03 18:02:14,148] [INFO] :: [Similarity] Cosine: 0.22 | Fuzzy: 0.16
+[2025-05-03 18:02:14,758] [INFO] :: [Similarity] Cosine: 0.43 | Fuzzy: 1.00
+[2025-05-03 18:02:15,420] [INFO] :: [Similarity] Cosine: 0.12 | Fuzzy: 0.24
+[2025-05-03 18:02:16,950] [INFO] :: [Similarity] Cosine: 0.32 | Fuzzy: 0.34
+[2025-05-03 18:02:16,951] [INFO] :: 🏆 Best match Oren Rabinovich: Oren Rabinovich on : Newark STEM Ecosystem @ 1.00
+[2025-05-03 18:02:16,954] [INFO] :: 🔍 SerpAPI query: "Isha Shah" "Rutgers University" site:linkedin.com
+[2025-05-03 18:02:16,969] [INFO] :: [Similarity] Cosine: 0.55 | Fuzzy: 1.00
+[2025-05-03 18:02:17,133] [INFO] :: [Similarity] Cosine: 0.70 | Fuzzy: 1.00
+[2025-05-03 18:02:17,328] [INFO] :: [Similarity] Cosine: 0.63 | Fuzzy: 0.63
+[2025-05-03 18:02:17,440] [INFO] :: [Similarity] Cosine: 0.52 | Fuzzy: 1.00
+[2025-05-03 18:02:17,459] [INFO] :: [Similarity] Cosine: 0.51 | Fuzzy: 1.00
+[2025-05-03 18:02:17,569] [INFO] :: [Similarity] Cosine: 0.64 | Fuzzy: 1.00
+[2025-05-03 18:02:18,775] [INFO] :: [Similarity] Cosine: 0.67 | Fuzzy: 1.00
+[2025-05-03 18:02:18,913] [INFO] :: [Similarity] Cosine: 0.44 | Fuzzy: 1.00
+[2025-05-03 18:02:18,997] [INFO] :: [Similarity] Cosine: 0.08 | Fuzzy: 0.18
+[2025-05-03 18:02:19,331] [INFO] :: [Similarity] Cosine: 0.53 | Fuzzy: 1.00
+[2025-05-03 18:02:19,353] [INFO] :: [Similarity] Cosine: 0.45 | Fuzzy: 1.00
+[2025-05-03 18:02:19,550] [INFO] :: [Similarity] Cosine: 0.46 | Fuzzy: 1.00
+[2025-05-03 18:02:20,115] [INFO] :: [Similarity] Cosine: 0.48 | Fuzzy: 0.35
+[2025-05-03 18:02:20,442] [INFO] :: 🏆 Best match Karma Tenzin: Karma Tenzin - Front Desk Staff - K9dergarten @ 1.00
+[2025-05-03 18:02:20,544] [INFO] :: [Similarity] Cosine: 0.59 | Fuzzy: 0.70
+[2025-05-03 18:02:20,974] [INFO] :: [Similarity] Cosine: 0.88 | Fuzzy: 1.00
+[2025-05-03 18:02:21,158] [INFO] :: [Similarity] Cosine: 0.56 | Fuzzy: 1.00
+[2025-05-03 18:02:21,210] [INFO] :: [Similarity] Cosine: 0.29 | Fuzzy: 0.19
+[2025-05-03 18:02:22,098] [INFO] :: [Similarity] Cosine: 0.41 | Fuzzy: 0.22
+[2025-05-03 18:02:22,246] [INFO] :: [Similarity] Cosine: 0.33 | Fuzzy: 1.00
+[2025-05-03 18:02:22,304] [INFO] :: [Similarity] Cosine: 0.21 | Fuzzy: 0.18
+[2025-05-03 18:02:22,317] [INFO] :: [Similarity] Cosine: 0.47 | Fuzzy: 1.00
+[2025-05-03 18:02:22,593] [INFO] :: [Similarity] Cosine: 0.66 | Fuzzy: 1.00
+[2025-05-03 18:02:22,713] [INFO] :: [Similarity] Cosine: 0.41 | Fuzzy: 1.00
+[2025-05-03 18:02:23,040] [INFO] :: [Similarity] Cosine: 0.69 | Fuzzy: 0.59
+[2025-05-03 18:02:23,276] [INFO] :: [Similarity] Cosine: 0.14 | Fuzzy: 0.14
+[2025-05-03 18:02:23,766] [INFO] :: [Similarity] Cosine: 0.34 | Fuzzy: 0.21
+[2025-05-03 18:02:23,943] [INFO] :: [Similarity] Cosine: 0.67 | Fuzzy: 1.00
+[2025-05-03 18:02:24,085] [INFO] :: [Similarity] Cosine: 0.58 | Fuzzy: 0.36
+[2025-05-03 18:02:24,156] [INFO] :: [Similarity] Cosine: 0.63 | Fuzzy: 1.00
+[2025-05-03 18:02:24,238] [INFO] :: [Similarity] Cosine: 0.21 | Fuzzy: 0.18
+[2025-05-03 18:02:24,347] [INFO] :: [Similarity] Cosine: 0.69 | Fuzzy: 1.00
+[2025-05-03 18:02:24,525] [INFO] :: [Similarity] Cosine: 0.49 | Fuzzy: 0.26
+[2025-05-03 18:02:24,714] [INFO] :: [Similarity] Cosine: 0.72 | Fuzzy: 1.00
+[2025-05-03 18:02:25,174] [INFO] :: [Similarity] Cosine: 0.21 | Fuzzy: 0.22
+[2025-05-03 18:02:25,305] [INFO] :: 🏆 Best match Chinmay Patel: Chinmay Patel - Sayreville, New Jersey, @ 1.00
+[2025-05-03 18:02:25,347] [INFO] :: [Similarity] Cosine: 0.76 | Fuzzy: 1.00
+[2025-05-03 18:02:25,606] [INFO] :: [Similarity] Cosine: 0.56 | Fuzzy: 0.58
+[2025-05-03 18:02:25,836] [INFO] :: [Similarity] Cosine: 0.20 | Fuzzy: 0.40
+[2025-05-03 18:02:25,911] [INFO] :: [Similarity] Cosine: 0.54 | Fuzzy: 1.00
+[2025-05-03 18:02:26,212] [INFO] :: [Similarity] Cosine: 0.29 | Fuzzy: 0.16
+[2025-05-03 18:02:26,368] [INFO] :: [Similarity] Cosine: 0.72 | Fuzzy: 0.76
+[2025-05-03 18:02:26,858] [INFO] :: [Similarity] Cosine: 0.49 | Fuzzy: 1.00
+[2025-05-03 18:02:26,970] [INFO] :: [Similarity] Cosine: 0.67 | Fuzzy: 1.00
+[2025-05-03 18:02:27,170] [INFO] :: [Similarity] Cosine: 0.23 | Fuzzy: 0.18
+[2025-05-03 18:02:27,320] [INFO] :: [Similarity] Cosine: 0.66 | Fuzzy: 1.00
+[2025-05-03 18:02:27,845] [INFO] :: [Similarity] Cosine: 0.60 | Fuzzy: 1.00
+[2025-05-03 18:02:28,250] [INFO] :: [Similarity] Cosine: 0.42 | Fuzzy: 0.18
+[2025-05-03 18:02:28,269] [INFO] :: [Similarity] Cosine: 0.51 | Fuzzy: 1.00
+[2025-05-03 18:02:28,337] [INFO] :: [Similarity] Cosine: 0.40 | Fuzzy: 1.00
+[2025-05-03 18:02:28,770] [INFO] :: [Similarity] Cosine: 0.63 | Fuzzy: 1.00
+[2025-05-03 18:02:28,948] [INFO] :: 🏆 Best match Ayush Patel: Ayush Patel - Incoming Software Engineer Intern @ 1.00
+[2025-05-03 18:02:29,344] [INFO] :: [Similarity] Cosine: 0.14 | Fuzzy: 0.17
+[2025-05-03 18:02:29,345] [INFO] :: 🏆 Best match Manan Patel: Manan Patel - Technology Consultant - EY @ 1.00
+[2025-05-03 18:02:29,469] [INFO] :: [Similarity] Cosine: 0.55 | Fuzzy: 1.00
+[2025-05-03 18:02:29,671] [INFO] :: [Similarity] Cosine: 0.30 | Fuzzy: 0.20
+[2025-05-03 18:02:29,752] [INFO] :: [Similarity] Cosine: 0.49 | Fuzzy: 1.00
+[2025-05-03 18:02:30,093] [INFO] :: [Similarity] Cosine: 0.65 | Fuzzy: 0.55
+[2025-05-03 18:02:30,329] [INFO] :: [Similarity] Cosine: 0.70 | Fuzzy: 1.00
+[2025-05-03 18:02:30,646] [INFO] :: [Similarity] Cosine: -0.07 | Fuzzy: 0.16
+[2025-05-03 18:02:30,647] [INFO] :: 🏆 Best match Isha Shah: Isha Shah - Rutgers School of Engineering @ 1.00
+[2025-05-03 18:02:30,814] [INFO] :: [Similarity] Cosine: 0.50 | Fuzzy: 1.00
+[2025-05-03 18:02:31,097] [INFO] :: [Similarity] Cosine: 0.53 | Fuzzy: 1.00
+[2025-05-03 18:02:31,248] [INFO] :: 🏆 Best match Riya Patel: Riya Patel - President - Rutgers Economics Society @ 1.00
+[2025-05-03 18:02:32,670] [INFO] :: ✅ All tasks finished
+[2025-05-03 18:02:33,498] [INFO] :: 📊 Finalizing income data before displaying table...
+[2025-05-03 18:02:33,499] [INFO] :: 📊 Income estimates added for 17 results

@@ -1,0 +1,9 @@
+dash
+pandas
+requests
+selenium
+sentence-transformers
+transformers
+webdriver-manager
+rapidfuzz
+chardet
