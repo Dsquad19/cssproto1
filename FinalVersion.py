@@ -1765,6 +1765,13 @@ def open_browser():
     except Exception as e:
         logger.warning(f"Could not open browser automatically: {e}")
 
+import os
+
+if __name__ == "__main__":
+    # open_browser()  # Only use this locally
+    port = int(os.environ.get("PORT", 8050))
+    app.run_server(host="0.0.0.0", port=port)
+
 
 if __name__ == "__main__":
     if os.environ.get("WERKZEUG_RUN_MAIN") == "true":
