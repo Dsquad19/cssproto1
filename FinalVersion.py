@@ -21,8 +21,9 @@ import platform
 # ────────────────────────────────────────────────────────────────
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+#from selenium.webdriver.chrome.service import Service
+#from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
 from sentence_transformers import SentenceTransformer
 from sentence_transformers.util import cos_sim
 from rapidfuzz import fuzz
@@ -145,18 +146,24 @@ university_map = {
 # ────────────────────────────────────────────────────────────────
 # Chrome driver (headless)
 # ────────────────────────────────────────────────────────────────
-DRIVER_PATH = ChromeDriverManager().install()
+#DRIVER_PATH = ChromeDriverManager().install()
 
 def create_driver():
-    opts = webdriver.ChromeOptions()
-    opts.add_argument("--headless")
-    opts.add_argument("--disable-gpu")
-    opts.add_argument("--no-sandbox")
-    opts.add_argument("--disable-dev-shm-usage")
-    opts.add_argument("--user-agent=Mozilla/5.0")
-    drv = webdriver.Chrome(service=Service(DRIVER_PATH), options=opts)
-    drv.set_page_load_timeout(15)
-    return drv
+    options = Options()
+    options.binary_location = "/usr/bin/chromium"
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--window-size=1920x1080")
+    options.add_argument("--user-agent=Mozilla/5.0")
+
+    driver = webdriver.Chrome(
+        executable_path="/usr/bin/chromedriver",
+        options=options
+    )
+    driver.set_page_load_timeout(15)
+    return driver
 
 # ────────────────────────────────────────────────────────────────
 # SerpAPI helpers — single call for profile + inline location & income
