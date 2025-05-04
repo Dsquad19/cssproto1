@@ -91,10 +91,10 @@ def open_log_file():
 # ────────────────────────────────────────────────────────────────
 
 # Use lightweight model (only ~100MB RAM instead of 800MB)
-sentence_model = SentenceTransformer("all-MiniLM-L6-v2")
+#sentence_model = SentenceTransformer("all-MiniLM-L6-v2")
 
 # Replace large Roberta model with smaller BERT NER
-ner_pipeline = pipeline("ner", model="dslim/bert-base-NER", grouped_entities=True)
+#ner_pipeline = pipeline("ner", model="dslim/bert-base-NER", grouped_entities=True)
 
 # ────────────────────────────────────────────────────────────────
 # Helpers
