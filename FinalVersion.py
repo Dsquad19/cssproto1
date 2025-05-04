@@ -476,7 +476,7 @@ external_stylesheets = [{
     'rel': 'stylesheet'
 }]
 
-app = dash.Dash(__name__, suppress_callback_exceptions=True, external_stylesheets=external_stylesheets)
+app = dash.Dash(__name__, suppress_callback_exceptions=True)
 server = app.server
 
 # Track retry attempts for each person
@@ -1778,9 +1778,6 @@ def open_browser():
 import os
 
 if __name__ == "__main__":
-    if os.environ.get("RENDER") != "true":
-        threading.Timer(1.5, open_browser).start()
-
-    port = int(os.environ.get("PORT", 8050))
+    port = int(os.environ.get("PORT", 10000))  # fallback is optional
     app.run_server(host="0.0.0.0", port=port)
 
