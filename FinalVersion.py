@@ -90,8 +90,11 @@ def open_log_file():
 # ML Models (single NER pipeline)
 # ────────────────────────────────────────────────────────────────
 
-sentence_model = SentenceTransformer("all-mpnet-base-v2")
-ner_pipeline = pipeline("ner", model="Jean-Baptiste/roberta-large-ner-english", grouped_entities=True)
+# Use lightweight model (only ~100MB RAM instead of 800MB)
+sentence_model = SentenceTransformer("all-MiniLM-L6-v2")
+
+# Replace large Roberta model with smaller BERT NER
+ner_pipeline = pipeline("ner", model="dslim/bert-base-NER", grouped_entities=True)
 
 # ────────────────────────────────────────────────────────────────
 # Helpers
