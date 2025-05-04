@@ -10,3 +10,4 @@ chardet
 rapidfuzz
 transformers
 huggingface_hub[hf_xet]
+gunicorn

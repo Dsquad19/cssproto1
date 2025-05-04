@@ -91,10 +91,10 @@ def open_log_file():
 # ────────────────────────────────────────────────────────────────
 
 # Use lightweight model (only ~100MB RAM instead of 800MB)
-#sentence_model = SentenceTransformer("all-MiniLM-L6-v2")
+sentence_model = SentenceTransformer("all-MiniLM-L6-v2")
 
 # Replace large Roberta model with smaller BERT NER
-#ner_pipeline = pipeline("ner", model="dslim/bert-base-NER", grouped_entities=True)
+ner_pipeline = pipeline("ner", model="dslim/bert-base-NER", grouped_entities=True)
 
 # ────────────────────────────────────────────────────────────────
 # Helpers
@@ -1778,6 +1778,9 @@ def open_browser():
 import os
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))  # fallback is optional
+    if os.environ.get("RENDER") != "true":
+        threading.Timer(1.5, open_browser).start()
+
+    port = int(os.environ.get("PORT", 8050))
     app.run_server(host="0.0.0.0", port=port)
 
