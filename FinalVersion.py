@@ -16,6 +16,10 @@ import requests
 import dash
 import platform
 import flask
+import functools
+import hashlib
+import pickle
+import os.path
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user
 import dash_bootstrap_components as dbc
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -26,13 +30,16 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
+import atexit
 from sentence_transformers import SentenceTransformer
 from sentence_transformers.util import cos_sim
 from rapidfuzz import fuzz
 from transformers import pipeline
 from collections import Counter
 from dash import dcc, html, dash_table, Output, Input, State, no_update
+
 
 # ────────────────────────────────────────────────────────────────
 # User Authentication
@@ -44,6 +51,42 @@ class User(UserMixin):
         self.id = id
         self.username = username
         self.name = name
+        
+# Simple file-based cache
+CACHE_DIR = os.path.join(os.environ.get("RENDER_CACHE_DIR", "/tmp"), "cache")
+os.makedirs(CACHE_DIR, exist_ok=True)
+
+def cache_result(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        # Create a cache key from the function arguments
+        key_parts = [func.__name__]
+        key_parts.extend([str(arg) for arg in args])
+        key_parts.extend([f"{k}={v}" for k, v in sorted(kwargs.items())])
+        key = hashlib.md5("|".join(key_parts).encode()).hexdigest()
+        cache_file = os.path.join(CACHE_DIR, f"{key}.pkl")
+        
+        # Check if result is cached
+        if os.path.exists(cache_file):
+            try:
+                with open(cache_file, "rb") as f:
+                    cached_result = pickle.load(f)
+                    logger.info(f"Cache hit for {func.__name__}")
+                    return cached_result
+            except Exception as e:
+                logger.warning(f"Failed to load cache: {e}")
+        
+        # Execute function and cache result
+        result = func(*args, **kwargs)
+        if result:  # Only cache non-None results
+            try:
+                with open(cache_file, "wb") as f:
+                    pickle.dump(result, f)
+            except Exception as e:
+                logger.warning(f"Failed to cache result: {e}")
+        
+        return result
+    return wrapper
 
 
 # Dictionary of authorized users - you can replace with your own users
@@ -85,10 +128,17 @@ finalized_table_data = []
 
 logger = logging.getLogger("LinkedInScraper")
 
-# CPU‑aware thread count (max 8)
-available_threads = os.cpu_count() or multiprocessing.cpu_count()
-max_threads = min(8, max(4, int(available_threads * 0.75)))
-executor = ThreadPoolExecutor(max_workers=max_threads)
+# CPU‑aware thread count optimization
+def get_optimal_thread_count():
+    available_threads = os.cpu_count() or multiprocessing.cpu_count()
+    # For cloud environments, more conservative thread usage
+    if os.environ.get('CLOUD_DEPLOYMENT') == 'true':
+        return min(4, max(2, int(available_threads * 0.5)))
+    else:
+        return min(8, max(4, int(available_threads * 0.75)))
+
+# Initialize with dynamic thread count
+executor = ThreadPoolExecutor(max_workers=get_optimal_thread_count())
 pending_tasks = []
 completed_results = []
 
@@ -101,9 +151,9 @@ action_lock = threading.Lock()
 # Logging — keep history (no truncation)
 # ────────────────────────────────────────────────────────────────
 
-log_file_path = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)), "searchlog.txt"
-)
+log_file_path = os.path.join(os.environ.get("RENDER_LOG_DIR", "/tmp"), "searchlog.txt")
+os.makedirs(os.path.dirname(log_file_path), exist_ok=True)
+
 logging.basicConfig(
     level=logging.INFO,
     format="[%(asctime)s] [%(levelname)s] :: %(message)s",
@@ -134,10 +184,22 @@ def open_log_file():
 # ML Models (single NER pipeline)
 # ────────────────────────────────────────────────────────────────
 
-sentence_model = SentenceTransformer("all-mpnet-base-v2")
-ner_pipeline = pipeline(
-    "ner", model="Jean-Baptiste/roberta-large-ner-english", grouped_entities=True
-)
+_sentence_model = None
+_ner_pipeline = None
+
+def get_sentence_model():
+    global _sentence_model
+    if _sentence_model is None:
+        _sentence_model = SentenceTransformer("all-mpnet-base-v2")
+    return _sentence_model
+
+def get_ner_pipeline():
+    global _ner_pipeline
+    if _ner_pipeline is None:
+        _ner_pipeline = pipeline(
+            "ner", model="Jean-Baptiste/roberta-large-ner-english", grouped_entities=True
+        )
+    return _ner_pipeline
 
 # ────────────────────────────────────────────────────────────────
 # Helpers
@@ -146,7 +208,8 @@ ner_pipeline = pipeline(
 
 def extract_ner_entities(text: str):
     """Return unique PER / ORG / LOC from a text blob."""
-    ents = ner_pipeline(text)
+    ner = get_ner_pipeline()
+    ents = ner(text)
     loc = {e["word"] for e in ents if e["entity_group"] == "LOC"}
     org = {e["word"] for e in ents if e["entity_group"] == "ORG"}
     per = {e["word"] for e in ents if e["entity_group"] == "PER"}
@@ -171,8 +234,8 @@ def is_best_match(full_name: str, title: str, cos_th=0.4, fuzz_th=0.75):
     if not (full_name and title):
         return False
     cos_score = cos_sim(
-        sentence_model.encode(full_name, convert_to_tensor=True),
-        sentence_model.encode(title, convert_to_tensor=True),
+        get_sentence_model().encode(full_name, convert_to_tensor=True),
+        get_sentence_model().encode(title, convert_to_tensor=True),
     ).item()
     fuzz_score = fuzz.token_set_ratio(full_name.lower(), title.lower()) / 100.0
     logger.info(f"[Similarity] Cosine: {cos_score:.2f} | Fuzzy: {fuzz_score:.2f}")
@@ -195,17 +258,59 @@ university_map = {
 # ────────────────────────────────────────────────────────────────
 DRIVER_PATH = ChromeDriverManager().install()
 
+# WebDriver pool
+driver_pool = []
+MAX_POOL_SIZE = 3
+driver_lock = threading.Lock()
 
-def create_driver():
-    opts = webdriver.ChromeOptions()
-    opts.add_argument("--headless")
-    opts.add_argument("--disable-gpu")
-    opts.add_argument("--no-sandbox")
-    opts.add_argument("--disable-dev-shm-usage")
-    opts.add_argument("--user-agent=Mozilla/5.0")
-    drv = webdriver.Chrome(service=Service(DRIVER_PATH), options=opts)
-    drv.set_page_load_timeout(15)
-    return drv
+def get_driver():
+    with driver_lock:
+        if driver_pool:
+            return driver_pool.pop()
+        else:
+            # Create new driver with Render-compatible options
+            opts = Options()
+            opts.add_argument("--headless")
+            opts.add_argument("--disable-gpu")
+            opts.add_argument("--no-sandbox")
+            opts.add_argument("--disable-dev-shm-usage")
+            opts.add_argument("--user-agent=Mozilla/5.0")
+            
+            # Special handling for Render.com environment
+            if os.environ.get("RENDER"):
+                # Use the Chrome binary that Render provides
+                chrome_binary = "/opt/render/project/chrome-linux/chrome"
+                if os.path.exists(chrome_binary):
+                    opts.binary_location = chrome_binary
+            
+            try:
+                driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=opts)
+                driver.set_page_load_timeout(15)
+                return driver
+            except Exception as e:
+                logger.error(f"Failed to create Chrome driver: {e}")
+                # Fallback to not returning driver values in production
+                # This will cause the app to gracefully handle driver failures
+                raise
+
+def return_driver(driver):
+    with driver_lock:
+        if len(driver_pool) < MAX_POOL_SIZE:
+            driver_pool.append(driver)
+        else:
+            driver.quit()
+
+def cleanup_drivers():
+    with driver_lock:
+        for driver in driver_pool:
+            try:
+                driver.quit()
+            except:
+                pass
+        driver_pool.clear()
+
+# Register cleanup function
+atexit.register(cleanup_drivers)
 
 
 # ────────────────────────────────────────────────────────────────
@@ -294,7 +399,7 @@ US_STATE_ABBR = {
 
 # Main profile search — one SerpAPI call per person
 
-
+@cache_result
 def serpapi_search_linkedin_profile(person: dict, api_key=None):
     # Get the key from session storage or fall back to env variable
     serp_key = api_key or os.getenv("SERPAPI_KEY", "")
@@ -340,8 +445,8 @@ def serpapi_search_linkedin_profile(person: dict, api_key=None):
 
             # compute score only once we know it passes threshold
             cos_s = cos_sim(
-                sentence_model.encode(full_name, convert_to_tensor=True),
-                sentence_model.encode(title, convert_to_tensor=True),
+                get_sentence_model().encode(full_name, convert_to_tensor=True),
+                get_sentence_model().encode(title, convert_to_tensor=True),
             ).item()
             fz_s = fuzz.token_set_ratio(full_name.lower(), title.lower()) / 100
             score = max(cos_s, fz_s)
@@ -383,7 +488,6 @@ def serpapi_search_linkedin_profile(person: dict, api_key=None):
 # Bing / Selenium fallback (kept, but no extra SerpAPI calls)
 # ────────────────────────────────────────────────────────────────
 
-
 def search_person(person, cosine_threshold=0.4, fuzzy_threshold=0.75, serpapi_key=None):
     result = serpapi_search_linkedin_profile(person, api_key=serpapi_key)
     if result:
@@ -396,7 +500,7 @@ def search_person(person, cosine_threshold=0.4, fuzzy_threshold=0.75, serpapi_ke
 
     driver = None
     try:
-        driver = create_driver()
+        driver = get_driver()
         driver.get(f"https://www.bing.com/search?q={query}")
         time.sleep(random.uniform(2, 3))
         entries = driver.find_elements(By.CSS_SELECTOR, "li.b_algo")[:10]
@@ -415,8 +519,8 @@ def search_person(person, cosine_threshold=0.4, fuzzy_threshold=0.75, serpapi_ke
             ):
                 continue
             cos_s = cos_sim(
-                sentence_model.encode(full_name, convert_to_tensor=True),
-                sentence_model.encode(title, convert_to_tensor=True),
+                get_sentence_model().encode(full_name, convert_to_tensor=True),
+                get_sentence_model().encode(title, convert_to_tensor=True),
             ).item()
             fz_s = fuzz.token_set_ratio(full_name.lower(), title.lower()) / 100
             sc = max(cos_s, fz_s)
@@ -445,7 +549,7 @@ def search_person(person, cosine_threshold=0.4, fuzzy_threshold=0.75, serpapi_ke
             return search_person(person)
     finally:
         if driver:
-            driver.quit()
+            return_driver(driver)
     return None
 
 
@@ -1784,6 +1888,29 @@ main_layout = html.Div(
                                 "color": "#333",
                             },
                         ),
+                        # API method display
+                        html.Div(
+                            id="api-method-indicator",
+                            style={
+                                "marginTop": "8px",
+                                "fontWeight": "500",
+                                "textAlign": "center",
+                                "fontSize": "14px",
+                                "padding": "5px 12px",
+                                "borderRadius": "12px",
+                                "display": "inline-block",
+                                "margin": "0 auto",
+                            },
+                        ),
+                        html.Div(
+                            id="eta-stats",
+                            style={
+                                "marginTop": "10px",
+                                "textAlign": "center",
+                                "color": "#666",
+                                "fontSize": "14px",
+                            },
+                        ),
                         html.Div(
                             id="eta-stats",
                             style={
@@ -1868,6 +1995,36 @@ main_layout = html.Div(
                                     },
                                 )
                             ],
+                        ),
+                        # Spinner element
+                        html.Div(
+                            id="loading-spinner",
+                            children=[
+                                html.I(
+                                    className="fas fa-circle-notch fa-spin",
+                                    style={
+                                        "fontSize": "32px",
+                                        "color": "#0a66c2",
+                                        "marginTop": "15px",
+                                        "marginBottom": "10px",
+                                    },
+                                ),
+                                html.Div(
+                                    "Processing...",
+                                    style={
+                                        "fontSize": "14px",
+                                        "color": "#555",
+                                        "fontWeight": "500",
+                                    },
+                                ),
+                            ],
+                            style={
+                                "display": "none",  # Initially hidden
+                                "flexDirection": "column",
+                                "alignItems": "center",
+                                "justifyContent": "center",
+                                "marginTop": "20px",
+                            },
                         ),
                         # Stop button with improved positioning
                         html.Div(
@@ -2428,6 +2585,17 @@ def parse_upload(contents, filename):
     encoding = chardet.detect(decoded)["encoding"]
     try:
         df = pd.read_csv(io.StringIO(decoded.decode(encoding)))
+        
+        # Check for required columns
+        required_columns = ["First Name", "Last Name", "University"]
+        missing_columns = [col for col in required_columns if col not in df.columns]
+        
+        if missing_columns:
+            error_msg = f"❌ CSV format error: Missing required column(s): {', '.join(missing_columns)}."
+            error_msg += " Please make sure your CSV has columns named exactly: 'First Name', 'Last Name', 'University'."
+            logger.error(error_msg)
+            return error_msg
+        
         uploaded_people = df.to_dict(orient="records")
         logger.info(f"📥 Uploaded {filename} with {len(uploaded_people)} rows.")
         return f"✅ Uploaded {filename} with {len(uploaded_people)} row(s)."
@@ -2445,6 +2613,9 @@ def parse_upload(contents, filename):
     Output("eta-stats", "children", allow_duplicate=True),
     Output("interval", "disabled", allow_duplicate=True),
     Output("manual-mode-label", "style", allow_duplicate=True),
+    Output("loading-spinner", "style", allow_duplicate=True),
+    Output("api-method-indicator", "children"),
+    Output("api-method-indicator", "style"),
     Input("search-button", "n_clicks"),
     Input("interval", "n_intervals"),
     State("first-name", "value"),
@@ -2473,6 +2644,15 @@ def update_table(
 
     ctx = dash.callback_context
     triggered = ctx.triggered_id
+    
+    # Create a spinner style that will be modified based on state
+    spinner_style = {
+        "display": "flex" if scraping_active else "none",
+        "flexDirection": "column",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "marginTop": "20px",
+    }
 
     serpapi_key = None
     if serpapi_data and "api_key" in serpapi_data:
@@ -2505,6 +2685,7 @@ def update_table(
                 no_update,
                 True,
                 {"display": "none"},
+                {"display": "none"},  # Hide spinner on error
             )
 
         if name_limit and isinstance(name_limit, int) and name_limit > 0:
@@ -2512,6 +2693,25 @@ def update_table(
 
         start_scrape_time = time.time()
         enqueue_tasks(people, cosine_val, fuzzy_val, serpapi_key)
+        
+        # Show spinner when search starts
+        spinner_style["display"] = "flex"
+        
+        # Determine API method based on SerpAPI key availability
+        api_method_msg = "🔍 Using SerpAPI" if serpapi_key else "🔎 Using Bing Search"
+        api_method_style = {
+            "backgroundColor": "#0a66c2" if serpapi_key else "#FFA500",
+            "color": "white",
+            "marginTop": "8px",
+            "fontWeight": "500",
+            "textAlign": "center",
+            "fontSize": "14px",
+            "padding": "5px 12px",
+            "borderRadius": "12px",
+            "display": "inline-block",
+            "margin": "0 auto",
+        }
+        
         return (
             [],
             {"width": "0%"},
@@ -2520,14 +2720,24 @@ def update_table(
             "ETA calculating...",
             False,
             manual_mode_style,
+            spinner_style,
+            api_method_msg,
+            api_method_style,
         )
 
     elif triggered == "interval" and scraping_active:
-        percent = int((len(completed_results) / total_tasks) * 100)
-        elapsed = time.time() - start_scrape_time
-        speed = len(completed_results) / elapsed if elapsed > 0 else 0
-        remaining = total_tasks - len(completed_results)
-        eta = remaining / speed if speed > 0 else 0
+         # Add a safety check to prevent division by zero
+        if total_tasks <= 0:
+            percent = 0
+            speed = 0
+            eta = 0
+            remaining = 0
+        else:
+            percent = int((len(completed_results) / total_tasks) * 100)
+            elapsed = time.time() - start_scrape_time
+            speed = len(completed_results) / elapsed if elapsed > 0 else 0
+            remaining = total_tasks - len(completed_results)
+            eta = remaining / speed if speed > 0 else 0
 
         results = completed_results.copy()
         for i, r in enumerate(results):
@@ -2538,6 +2748,24 @@ def update_table(
             r.setdefault("LinkedIn URL", "")
             r.setdefault("Score", "N/A")
 
+        # Keep spinner visible while processing
+        spinner_style["display"] = "flex"
+        
+        # Keep the API method info during search
+        api_method_msg = "🔍 Using SerpAPI" if serpapi_key else "🔎 Using Bing Search"
+        api_method_style = {
+            "backgroundColor": "#0a66c2" if serpapi_key else "#FFA500",
+            "color": "white",
+            "marginTop": "8px",
+            "fontWeight": "500",
+            "textAlign": "center",
+            "fontSize": "14px",
+            "padding": "5px 12px",
+            "borderRadius": "12px",
+            "display": "inline-block",
+            "margin": "0 auto",
+        }
+        
         if last_result_time and time.time() - last_result_time > 30:
             logger.warning("⏳ No progress for 30+ seconds — recommend restarting.")
             return (
@@ -2558,6 +2786,9 @@ def update_table(
                 f"⏱ ETA: stalled | Speed: {speed:.2f}/sec",
                 False,
                 {"display": "none"},
+                spinner_style,
+                api_method_msg,
+                api_method_style,
             )
 
         return (
@@ -2578,10 +2809,15 @@ def update_table(
             f"⏱ ETA: {int(eta)}s | Speed: {speed:.2f}/sec",
             False,
             {"display": "none"},
+            spinner_style,
+            api_method_msg,
+            api_method_style,
         )
 
     elif not scraping_active and completed_results:
-
+        # Hide spinner when complete
+        spinner_style["display"] = "none"
+        
         if not final_table_ready:
             logger.info("📊 Finalizing income data before displaying table...")
             finalized_table_data = finalize_income_estimates(completed_results.copy())
@@ -2611,8 +2847,14 @@ def update_table(
             "Done.",
             True,
             {"display": "none"},
+            spinner_style,
+            "",  # Clear the API method message when done
+            {"display": "none"},  # Hide the API method indicator
         )
 
+    # Hide spinner by default for other cases
+    spinner_style["display"] = "none"
+    
     return (
         no_update,
         no_update,
@@ -2621,6 +2863,9 @@ def update_table(
         no_update,
         no_update,
         {"display": "none"},
+        spinner_style,
+        "",  # API method message
+        {"display": "none"},  # API method style
     )
 
 
@@ -2639,6 +2884,9 @@ def update_table(
         Output("fuzzy-threshold", "value", allow_duplicate=True),
         Output("name-limit", "value", allow_duplicate=True),
         Output("serpapi-key-store", "data", allow_duplicate=True),
+        Output("loading-spinner", "style", allow_duplicate=True),
+        Output("api-method-indicator", "children", allow_duplicate=True),
+        Output("api-method-indicator", "style", allow_duplicate=True),
     ],
     Input("stop-button", "n_clicks"),
     Input("restart-button", "n_clicks"),
@@ -2650,6 +2898,15 @@ def handle_stop_restart(stop_clicks, restart_clicks, stop_confirmed, restart_con
     global scraping_active, completed_results, total_tasks, pending_tasks
 
     triggered_id = ctx.triggered_id
+    
+    # Hide spinner when stopped/restarted
+    spinner_style = {
+        "display": "none",
+        "flexDirection": "column",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "marginTop": "20px",
+    }
 
     if triggered_id == "stop-button" and stop_confirmed:
         scraping_active = False
@@ -2675,12 +2932,16 @@ def handle_stop_restart(stop_clicks, restart_clicks, stop_confirmed, restart_con
             no_update,
             no_update,
             no_update,
+            spinner_style,  # Hide spinner when stopped
+            "",  # Clear API method message
+            {"display": "none"},  # Hide API method indicator
         )
 
     elif triggered_id == "restart-button" and restart_confirmed:
         completed_results.clear()
         total_tasks = 0
         pending_tasks.clear()
+        scraping_active = False  # Explicitly set to False on restart
         logger.info("🔁 Search restarted and settings reset to defaults.")
 
         # Return default values for all fields including advanced settings
@@ -2697,10 +2958,16 @@ def handle_stop_restart(stop_clicks, restart_clicks, stop_confirmed, restart_con
             0.4,  # default cosine threshold
             0.75,  # default fuzzy threshold
             None,  # default name limit
-            {},
-        )  # clear serpapi key
+            {},  # clear serpapi key
+            spinner_style,  # Hide spinner when restarted
+            "",  # Clear API method message
+            {"display": "none"},  # Hide API method indicator
+        )
 
     return (
+        no_update,
+        no_update,
+        no_update,
         no_update,
         no_update,
         no_update,
@@ -2837,6 +3104,83 @@ def logout(n_clicks, confirmed):
         return True
     return False
 
+app.clientside_callback(
+    """
+    function(n_clicks, confirmed) {
+        if (n_clicks && confirmed) {
+            // Short delay to let the server process the logout
+            setTimeout(() => {
+                // Force a full page reload to show the login screen
+                window.location.href = window.location.pathname;
+            }, 300);
+        }
+        return window.dash_clientside.no_update;
+    }
+    """,
+    Output("logout-button", "id", allow_duplicate=True),
+    [Input("logout-button", "n_clicks"), Input("logout-button", "data-confirmed")],
+    prevent_initial_call=True,
+)
+
+
+app.clientside_callback(
+    """
+    function(restart_clicks, confirmed) {
+        if (restart_clicks && confirmed) {
+            console.log('Restart confirmed, immediately clearing UI...');
+            
+            // Clear the table data
+            const table = document.getElementById('results-table');
+            if (table && table._dashprivate_) {
+                table._dashprivate_.setProps({data: []});
+            }
+            
+            // Reset the progress bar
+            const progressBar = document.getElementById('progress-bar');
+            if (progressBar) {
+                progressBar.style.width = '0%';
+                progressBar.innerText = '0%';
+            }
+            
+            // Clear the status message
+            const statusElement = document.getElementById('search-status');
+            if (statusElement) {
+                statusElement.innerText = "🔁 Restarting...";
+            }
+            
+            // Clear the ETA stats
+            const etaElement = document.getElementById('eta-stats');
+            if (etaElement) {
+                etaElement.innerText = "";
+            }
+            
+            // Hide the spinner
+            const spinner = document.getElementById('loading-spinner');
+            if (spinner) {
+                spinner.style.display = 'none';
+            }
+            
+            // Clear input fields manually
+            const inputIds = ['first-name', 'last-name', 'university', 'grad-year'];
+            inputIds.forEach(id => {
+                const input = document.getElementById(id);
+                if (input) input.value = '';
+            });
+            
+            // Force a DOM refresh
+            setTimeout(() => {
+                window.dispatchEvent(new Event('resize'));
+                // Add a timestamp to force browser refresh
+                window.location.hash = Date.now();
+            }, 100);
+        }
+        return window.dash_clientside.no_update;
+    }
+    """,
+    Output("restart-button", "id", allow_duplicate=True),
+    [Input("restart-button", "n_clicks"), Input("restart-button", "data-confirmed")],
+    prevent_initial_call=True,
+)
 
 # Welcome message callback
 @app.callback(Output("user-welcome", "children"), Input("auth-store", "data"))
@@ -2877,9 +3221,27 @@ def open_browser():
         webbrowser.open_new(url)
     except Exception as e:
         logger.warning(f"Could not open browser automatically: {e}")
+        
+def shutdown_resources():
+    """Gracefully close all resources when the application stops."""
+    # Shutdown the thread pool executor
+    logger.info("Shutting down thread pool executor...")
+    executor.shutdown(wait=False)
+    
+    # Clean up all drivers
+    logger.info("Cleaning up WebDriver instances...")
+    cleanup_drivers()
+    
+    # Close any open models to free memory
+    global _sentence_model, _ner_pipeline
+    _sentence_model = None
+    _ner_pipeline = None
+    logger.info("Resources shutdown complete.")
+
+# Register the shutdown function with atexit
+atexit.register(shutdown_resources)
 
 
 if __name__ == "__main__":
-    if os.environ.get("WERKZEUG_RUN_MAIN") == "true":
-        threading.Timer(1.5, open_browser).start()
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 8050))
+    app.run(host="0.0.0.0", port=port, debug=False)
