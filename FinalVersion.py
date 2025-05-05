@@ -281,8 +281,7 @@ US_STATE_ABBR = {
 }
 
 
-#
-Main profile search— one SerpAPI call per person
+#Main profile search— one SerpAPI call per person
 
 def serpapi_search_linkedin_profile(person: dict, api_key = None): #Get the key from session storage or fall back to env variable
 serp_key = api_key or os.getenv("SERPAPI_KEY", "")
