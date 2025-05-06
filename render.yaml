@@ -1,7 +1,14 @@
 services:
   - type: web
-    name: linkedin-finder
+    name: linkedin-search
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn FinalVersion:server --bind 0.0.0.0:$PORT
-    plan: free
+    buildCommand: |
+      pip install -r requirements.txt
+      apt-get update && apt-get install -y wget gnupg
+      wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+      echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+      apt-get update && apt-get install -y google-chrome-stable
+    startCommand: python FinalVersion.py
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: true
