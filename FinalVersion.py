@@ -93,11 +93,11 @@ def cache_result(func):
 # Format: username: (user_id, password_hash, display_name)
 VALID_USERS = {
     #Admin user
-    'arik': (1, generate_password_hash("ArikLASMP2025"), "Arik"),
-    'soham': (2, generate_password_hash("SohamLASMP2025"), "Soham"),
-    'darsh': (3, generate_password_hash("darshLASMP2025"), "Darsh"),
-    'dylan': (4, generate_password_hash("dylanLASMP2025"), "Dylan"),
-    'andrew': (5, generate_password_hash("andrewLASMP2025"), "andrew"),
+    'arik': (1, generate_password_hash("ArikLSAMP2025!"), "Arik"),
+    'soham': (2, generate_password_hash("SohamLSAMP2025!"), "Soham"),
+    'darsh': (3, generate_password_hash("DarshLASMP2025!"), "Darsh"),
+    'dylan': (4, generate_password_hash("DylanLSAMP2025!"), "Dylan"),
+    'andrew': (5, generate_password_hash("AndrewLSAMP2025!"), "andrew"),
     
     # Regular users
     'oren': (6, generate_password_hash("orenLASMP2025"), "Oren"),
@@ -282,22 +282,49 @@ def get_driver():
             opts.add_argument("--disable-dev-shm-usage")
             opts.add_argument("--user-agent=Mozilla/5.0")
             
-            # Special handling for Render.com environment
+            # Enhanced handling for Render.com environment
             if os.environ.get("RENDER"):
-                # Use the Chrome binary that Render provides
-                chrome_binary = "/opt/render/project/chrome-linux/chrome"
-                if os.path.exists(chrome_binary):
-                    opts.binary_location = chrome_binary
+                # Try multiple possible Chrome binary locations
+                possible_locations = [
+                    "/opt/render/project/chrome-linux/chrome",
+                    "/opt/render/project/.apt/usr/bin/google-chrome",
+                    "/usr/bin/google-chrome",
+                    "/usr/bin/chromium",
+                    "/usr/bin/chromium-browser"
+                ]
+                
+                chrome_found = False
+                for location in possible_locations:
+                    if os.path.exists(location):
+                        logger.info(f"✅ Chrome binary found at: {location}")
+                        opts.binary_location = location
+                        chrome_found = True
+                        break
+                
+                if not chrome_found:
+                    logger.warning("❌ No Chrome binary found in standard locations")
             
             try:
-                driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=opts)
+                # Compatible way to handle ChromeDriverManager for different versions
+                try:
+                    # For newer versions that support cache_path
+                    driver_path = ChromeDriverManager(cache_valid_range=7).install()
+                except TypeError:
+                    # Fallback for older versions
+                    driver_path = ChromeDriverManager().install()
+                
+                driver = webdriver.Chrome(service=Service(driver_path), options=opts)
                 driver.set_page_load_timeout(15)
                 return driver
             except Exception as e:
                 logger.error(f"Failed to create Chrome driver: {e}")
-                # Fallback to not returning driver values in production
-                # This will cause the app to gracefully handle driver failures
-                raise
+                # In production, fall back to API-only mode
+                if os.environ.get("RENDER"):
+                    logger.warning("⚠️ Falling back to API-only mode (no Selenium)")
+                    # Return None instead of raising to prevent crashes
+                    return None
+                else:
+                    raise
 
 def return_driver(driver):
     with driver_lock:
@@ -499,14 +526,19 @@ def search_person(person, cosine_threshold=0.4, fuzzy_threshold=0.75, serpapi_ke
     if result:
         return result
 
-    # Fallback via Bing (rare)
-    full_name = f"{person['First Name']} {person['Last Name']}".strip()
-    query = f'"{full_name}" "{person["University"]}" site:linkedin.com'
-    attempt = retry_attempts.get(full_name, 0)
+    # Only attempt Selenium fallback if we're not on Render or Chrome is available
+    if not os.environ.get("RENDER") or os.path.exists("/usr/bin/google-chrome"):
+        # Fallback via Bing (rare)
+        full_name = f"{person['First Name']} {person['Last Name']}".strip()
+        query = f'"{full_name}" "{person["University"]}" site:linkedin.com'
+        attempt = retry_attempts.get(full_name, 0)
 
-    driver = None
+        driver = None
     try:
         driver = get_driver()
+        if driver is None:
+                logger.warning(f"Selenium unavailable for {full_name} - skipping Bing fallback")
+                return None
         driver.get(f"https://www.bing.com/search?q={query}")
         time.sleep(random.uniform(2, 3))
         entries = driver.find_elements(By.CSS_SELECTOR, "li.b_algo")[:10]
@@ -556,6 +588,8 @@ def search_person(person, cosine_threshold=0.4, fuzzy_threshold=0.75, serpapi_ke
     finally:
         if driver:
             return_driver(driver)
+     # If we can't use Selenium at all
+    logger.warning(f"Skipping Selenium search for {person['First Name']} {person['Last Name']} (Chrome not available)")
     return None
 
 
@@ -791,9 +825,14 @@ login_layout = html.Div(
                         html.Div(
                             id="login-error",
                             style={
-                                "color": "red",
+                                "color": "white",
+                                "backgroundColor": "#f44336",
                                 "textAlign": "center",
                                 "marginBottom": "20px",
+                                "padding": "10px 15px",
+                                "borderRadius": "8px",
+                                "fontWeight": "bold",
+                                "display": "none",  # Hidden by default, will be shown when there's an error
                             },
                         ),
                         html.Div(
@@ -2322,6 +2361,44 @@ app.clientside_callback(
     """,
     Output("results-anchor", "children"),
     Input("search-button", "n_clicks"),
+    prevent_initial_call=True,
+)
+
+# Add this near your other clientside callbacks
+app.clientside_callback(
+    """
+    function(error_message) {
+        const errorDiv = document.getElementById('login-error');
+        
+        if (error_message && error_message.length > 0) {
+            // Show error message with visual indicator
+            errorDiv.innerText = error_message;
+            errorDiv.style.display = 'block';
+            
+            // Add shake animation to the login form
+            const loginForm = document.querySelector('.login-form');
+            if (loginForm) {
+                loginForm.classList.add('shake');
+                setTimeout(() => loginForm.classList.remove('shake'), 500);
+            }
+            
+            // Add red border to inputs
+            const inputs = document.querySelectorAll('#username-input, #password-input');
+            inputs.forEach(input => {
+                input.style.borderColor = '#f44336';
+                input.style.boxShadow = '0 0 0 2px rgba(244,67,54,0.2)';
+            });
+            
+            return true;
+        } else {
+            // Hide error message when empty
+            errorDiv.style.display = 'none';
+            return false;
+        }
+    }
+    """,
+    Output("login-error", "data-displayed", allow_duplicate=True),
+    Input("login-error", "children"),
     prevent_initial_call=True,
 )
 
