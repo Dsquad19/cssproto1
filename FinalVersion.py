@@ -92,9 +92,15 @@ def cache_result(func):
 # Dictionary of authorized users - you can replace with your own users
 # Format: username: (user_id, password_hash, display_name)
 VALID_USERS = {
-    "admin": (1, generate_password_hash("admin123"), "Administrator"),
-    "user1": (2, generate_password_hash("password123"), "User One"),
-    "user2": (3, generate_password_hash("test123"), "User Two"),
+    #Admin user
+    'arik': (1, generate_password_hash("ArikLASMP2025"), "Arik"),
+    'soham': (2, generate_password_hash("SohamLASMP2025"), "Soham"),
+    'darsh': (3, generate_password_hash("darshLASMP2025"), "Darsh"),
+    'dylan': (4, generate_password_hash("dylanLASMP2025"), "Dylan"),
+    'andrew': (5, generate_password_hash("andrewLASMP2025"), "andrew"),
+    
+    # Regular users
+    'oren': (6, generate_password_hash("orenLASMP2025"), "Oren"),
 }
 
 # Initialize Flask server and login manager
@@ -970,7 +976,7 @@ main_layout = html.Div(
                                     "How this program works",
                                 ]
                             ),
-                            href="/assets/42f021a5-7b2b-40eb-99d8-42e07bc11f8d.pdf",
+                            href="/assets/How this program works .pdf",
                             target="_blank",
                             className="floating-btn info-btn",
                             style={
