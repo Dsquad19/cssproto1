@@ -3,5 +3,5 @@ services:
     name: linkedin-finder
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: python FinalVersion.py
+    startCommand: gunicorn FinalVersion:server --bind 0.0.0.0:$PORT
     plan: free
